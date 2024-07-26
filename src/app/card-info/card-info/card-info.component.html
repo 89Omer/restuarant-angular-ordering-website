@@ -1,0 +1,22 @@
+
+<div class="modal-header">
+  <h2>{{'card_info' | translate}}</h2>
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+  <ngx-spinner size="medium" name="cardUI" [color]="'#fbaf03'" type="ball-clip-rotate">
+    <p style="color: white" class="mt-5">Loading...</p>
+  </ngx-spinner>
+  <ngx-stripe-card (ready)="onReadyEvent($event)" class="card-number custom form-control" [options]="cardOptions"
+    (change)="onChange($event)">
+  </ngx-stripe-card>
+  <div id="card-errors" style="color:red"></div>
+  <!-- <input class="form-control input-box form-foodwagon-control" type="tel" placeholder="{{'enter_your_card_number' | translate}}" maxlength="16" [(ngModel)]="cardInfo.number"/>
+  <input class="form-control input-box form-foodwagon-control" type="text" placeholder="{{'name_on_card' | translate}}" [(ngModel)]="cardInfo.name"/>
+  <input class="form-control input-box form-foodwagon-control" type="number" placeholder="{{'expiry_month' | translate}}" maxlength="2" [(ngModel)]="cardInfo.expMonth"/>
+  <input class="form-control input-box form-foodwagon-control" type="number" placeholder="{{'expiry_year' | translate}}" maxlength="2" [(ngModel)]="cardInfo.expYear"/>
+  <input class="form-control input-box form-foodwagon-control" type="tel" placeholder="{{'cvv' | translate}}" maxlength="3" [(ngModel)]="cardInfo.cvc"/> -->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="proceed()"> {{'continue' | translate}}</button>
+</div>

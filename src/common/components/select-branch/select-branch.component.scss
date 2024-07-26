@@ -1,0 +1,42 @@
+.popup-left-image{
+  width: 100%;
+  height: auto;
+}
+
+.address-row{
+  background: white;
+  --bs-gutter-x: 0;
+
+}
+
+::ng-deep .address-popup{
+  .modal-content{
+    height: 30vh !important;
+  }
+}
+
+.mt-20{
+  margin-top: 20%;
+}
+::ng-deep .pac-container{
+ //top:0 !important;
+  z-index:9999 !important;
+}
+
+.form-group{position: relative;}
+.form-group .form-control{padding: 10px 120px 10px 35px;}
+.saveBtn{position: absolute; right: 2px; top: 2px;}
+.fa-map-marker-alt{position: absolute; left: 15px; top: 15px;}
+.form-control:focus{border: none; outline: none; box-shadow: none;}
+h3{text-transform: uppercase;}
+.btn-close{background-color: white !important;position: absolute; right: 12px; top: 12px; padding: 5px;}
+
+@media only screen and (max-width: 767px) {
+  h3{font-size:18px;}
+  .form-group .form-control{padding: 12px 110px 13px 35px;font-size: 13px; }
+}
+.btn-primary:disabled {
+  background-color: transparent !important;
+  color: #ffb30e !important;
+  opacity: 1;
+}

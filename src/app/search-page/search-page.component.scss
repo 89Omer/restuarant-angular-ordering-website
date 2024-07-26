@@ -1,0 +1,64 @@
+$themeDarkColor: #0F172B;
+$f-whiteColor: white;
+$secondaryColor:#ffb30e;
+
+
+.restaurant-banner {
+    position: relative;
+    bottom: 0;
+    box-shadow: inset 0 -4px 6px 0 rgb(27 35 36 / 8%),
+      0 -2px 12px -2px rgb(27 35 36 / 32%), 0 -3px 6px 0 rgb(27 35 36 / 24%);
+    width: 100%;
+    margin-bottom: -70px;
+    z-index: -1; 
+  }
+  
+  .restaurantBannerArea:after{
+    content: "";
+    position: absolute;
+    left: 0; top:0;
+    width: 100%;
+    height: auto;
+    min-height: 360px;
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9));}
+
+    .underline h2 {
+        position: relative;
+        color: $f-whiteColor;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color:$secondaryColor;
+        }
+    }
+    .center_img{text-align: center;}
+    .catChunkImg{border-radius: 35px 0px 35px 0; border: 1px solid #eee; padding: 2px;
+        width:100%; height: 250px; max-width: 250px; margin: 0 auto;
+       }
+    h4{font-size: 18px; margin-top: 10px;}   
+    .light_img{max-width: 200px; height: auto;}
+
+
+    @media only screen and (max-width: 1200px) {
+        .restaurant-banner {
+            height: auto;
+          }
+          .restaurantBannerArea:after{ min-height: 372px;}
+    }
+
+@media only screen and (max-width: 991px) {
+      .restaurantBannerArea:after{ min-height: 300px;}
+}
+
+@media only screen and (max-width:767px) {
+    .restaurantBannerArea:after{ min-height:230px;}
+    .catChunkImg{ height: 200px; max-width: 200px; margin: 0 auto; }
+}
+@media only screen and (max-width:480px) {
+    .restaurantBannerArea:after{ min-height:170px; }
+}

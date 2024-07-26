@@ -1,0 +1,90 @@
+agm-map {
+  height: 500px;
+}
+
+// ::ng-deep .pac-container{
+// //  top:80px !important
+// }
+
+::ng-deep .pac-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-height: 300px;
+  width: 300px; /* Adjust width as needed */
+  position: absolute !important;
+  top: 120px !important; /* Adjust the distance from the input */
+  z-index: 1000;
+  transition: opacity 0.2s, transform 0.2s;
+  opacity: 10;
+  transform: translateY(-10px);
+}
+
+::ng-deep .pac-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+::ng-deep .pac-item:hover {
+  background-color: #f5f5f5;
+}
+
+::ng-deep .pac-item-query {
+  font-weight: bold;
+}
+
+::ng-deep .pac-icon-marker {
+  display: none; /* Hide the default location marker icon */
+}
+
+/* Show the dropdown when it's active */
+::ng-deep .pac-container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.img_box {
+  min-width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+
+  img {
+      width: 35px;
+      display: block;
+      margin: 0 auto;
+  }
+}
+.address-select{
+  top: 107px;
+}
+.address-select-label{
+  top: 107px;
+  left:87px ;
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .form-control{padding-left: 10px;}
+  .address-select{top: 102px;}
+  .address-icon-list{
+    .img_box { margin-right: 10px;
+      img{ width: 24px;}
+      .ms-2 {margin-left: .2rem !important;}
+     }
+    .form-check{padding-right: 0;
+      .form-check-input{    margin-left: -1.2em;}
+    }
+  }
+ }
+ .btn-primary:disabled {
+  background-color: transparent !important;
+  color: #ffb30e !important;
+  opacity: 1;
+}

@@ -1,0 +1,61 @@
+  <div class="main">
+    <div class="restaurantBannerArea"><img class="login-img restaurant-banner" src="assets/images/vendor-banner.webp" /></div>
+    <section id="testimonial" class="py-0">
+      <div class="container">
+        <div class="row h-100">
+          <div class="d-flex justify-content-center mt-5 mt-md-0 mb-7 underline">
+            <h2> Items</h2>
+          </div>
+        </div>
+        <div class="row gx-2">
+          <!-- <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 cursor-pointer" *ngFor="let restaurant of orders" (click)="router.navigate(['restaurant'],{queryParams:{id:restaurant.id},state:{vendor:restaurant}})">
+            <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" [src]="restaurant.vendor.image" alt="..." />
+              <div class="card-img-overlay ps-0"></div>
+              <div class="card-body ps-0">
+                <div class="d-flex align-items-center mb-3" >
+                  <div class="flex-1 ms-3">
+                    <h5 class="mb-0 fw-bold text-1000">{{restaurant.vendor.name}}</h5>
+                    <span class="f-gray">restaurant.</span>
+                    <hr/>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="empty-view" *ngIf="(!foods || !foods.length) && router.url.includes('search')">
+            <div style="text-align:center">
+              <div class="col-12 mb-4">
+                <img class="light_img" src="assets/images/empty_orders.png" />
+              </div>
+              <div class="col-12">
+             
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="router.url.includes('search')">
+            <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-3 cursor-pointer" *ngFor="let food of foods">
+              <div *ngIf="food.id > 0" class="animate__animated animate__fadeInUp">
+                <div class="item_inner">
+                  <div class="item_info ">
+                    <div class="itme_img center_img">
+                      <img [src]="food.images" class="img-fluid catChunkImg">
+                    </div>
+                    <div class="item_details">
+                      <h4 class="text-center">
+                        {{food.title}}
+                      </h4>
+              
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          </ng-container>
+  
+        </div>
+      </div>
+    </section>
+  </div>
+  

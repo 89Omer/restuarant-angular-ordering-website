@@ -1,0 +1,40 @@
+<div class="main">
+  <div class="container tableBookeArea" [ngClass]="router.url.includes('order-placed')?'mt-7 mt-md-8 mt-lg-9':'mt-8'">
+    <ng-container *ngIf="router.url.includes('order-placed')">
+    <div class="row">
+     <div class="col-lg-6 col-sm-6">
+      <div class="img_box text-center">
+        <img class="orderPlaceImg" src="assets/images/order_placed.png">
+      </div>
+     </div> 
+     <div class="col-lg-6 col-sm-6">
+      <div *ngIf="!processing" class="text_box col-md-6">
+        <h2 [ngClass]="paymentDone ? 'text-success' : 'text-danger'">
+          {{ (paymentDone ? 'order_placed' : 'order_failed') | translate}}
+        </h2>
+        <p [innerHTML]="( paymentDone ? 'order_placed_msg' : 'order_failed_msg') | translate">
+        </p>
+        <a *ngIf="paymentDone" class="btnLink text-warning cursor-pointer" (click)="router.navigate(['/my-orders'])">my orders </a>section.
+      </div>
+     </div>
+    </div>  
+    </ng-container>
+    <ng-container *ngIf="router.url.includes('table-booked')" class="tableBooked">
+      <div class="table_img_box">
+        <img src="assets/images/table_booked.png">
+      </div>
+      <div class="text_box">
+        <h2 [ngClass]="'text-success'">
+          {{'table_booked' | translate}} !!
+        </h2>
+        <p>
+          {{'thanks_for_choosing_us' | translate}}.<br>
+          {{'your_booking_with_restaurant' | translate}} <br>
+          {{'ic_confirmed' | translate}}.</p>
+        <p>{{'you_can_check_your_booking_details' | translate}}<br>
+          {{'in_my_order_section' | translate}}
+          .</p>
+      </div>
+    </ng-container>
+  </div>
+</div>

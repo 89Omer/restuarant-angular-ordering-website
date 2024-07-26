@@ -1,0 +1,123 @@
+<div class="main mt-8 mt-md-10">
+ <div class="container">   
+  <div class="d-md-flex">
+    <div class="item_inner w-md-50">
+    <div class="item_info d-flex">
+        <div class="itme_img center_img">
+            <img [src]="order.vendor.image" class="crop_img">
+        </div>
+        <div class="item_details">
+            <span>
+            {{ (order.is_guest ? 'guest_'+order.order_type : order.order_type ) | translate}} | #{{order.id}}
+            </span>
+        <span class="end order_status ms-3 text-primary">
+            {{('order_status_'+order.status) | translate}}
+        </span>
+            <h3 class="d-flex">
+                {{order.vendor.name}}
+            </h3>
+            <h4 class="d-flex">{{order.created_at}}
+                <span *ngIf="order.payment && order.payment.payment_method" class="end">
+                    {{order.total_toshow}} | {{order.payment.payment_method.title}}
+                </span>
+                <span *ngIf="!order.payment || !order.payment.payment_method" class="end">
+                    {{order.total_toshow}} | {{'cash' | translate}}
+                </span>
+            </h4>
+        </div>
+    </div>
+    </div>
+    <div class="list_inner">
+    <div class="item_list">
+        <div *ngFor="let item of order.products">
+            <div class="item_inner">
+                <div class="text_box">
+                    <div class="d-flex" style="align-items: flex-start;">
+                        <h5 class="d-flex">
+                            {{item.vendor_product.product.title}}
+                        </h5>
+                        <div class="end item_price d-flex">
+                            <p class="ms-2 mb-0"> <strong>x{{item.quantity}}</strong> </p>
+                            <h5 class="text-end ms-3"> {{item.vendor_product.sale_priceToShow ? item.vendor_product.sale_priceToShow : item.vendor_product.priceToShow}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="item.addon_choices && item.addon_choices.length" class="text_box customise">
+                    <div *ngFor="let choice of item.addon_choices" class="d-flex" style="align-items: flex-start;">
+                        <h6 class="d-flex">{{choice.addon_choice.title}}</h6>
+                        <div class="end item_price d-flex">
+                            <h6 class="ion-text-end end"> {{choice.addon_choice.showChoicePrice}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div  class="p-10-15">
+    <div class="d-flex justify-content-around" *ngFor="let item of order.products">
+        <div>
+            <h5>
+            {{item.vendor_product.product.title}} x{{item.quantity}}:
+        </h5>
+        </div>
+        <div>
+            <h5>
+            {{item.vendor_product.sale_priceToShow ? item.vendor_product.sale_priceToShow : item.vendor_product.priceToShow}}
+            </h5>
+        </div>
+    <div  ngIf="item.addon_choices && item.addon_choices.length">
+        <div  class="d-flex" *ngFor="let choice of item.addon_choices">
+        <h5>{{choice.addon_choice.title}}</h5>
+        <div>
+            <h6 class="ion-text-end end">{{choice.addon_choice.showChoicePrice}}</h6>
+        </div>
+        </div>
+    </div>
+    </div>
+        <div class="payment_info">
+        <h5>{{'payment_info' | translate}}:</h5>
+        <!-- <div *ngIf="order.subtotal_toshow">
+            <div class="item_inner">
+                <h6 class="d-flex">{{'sub_total' | translate}}: <span class="end"> {{order.subtotal_toshow}}</span></h6>
+            </div>
+        </div> -->
+        <div *ngIf="order.total_toshow">
+            <div class="item_inner">
+                <h6 class="d-flex">{{'sub_total' | translate}}: <span class="end"> {{order.total_toshow}}</span></h6>
+            </div>
+        </div>
+        <div *ngIf="order.taxes_toshow">
+            <div class="item_inner">
+                <h6 class="d-flex">{{'service_fee' | translate}}: <span class="end"> {{order.taxes_toshow}}</span>
+                </h6>
+            </div>
+        </div>
+        <div *ngIf="order.delivery_fee_toshow">
+            <div class="item_inner">
+                <h6 class="d-flex">{{'delivery_fee' | translate}}: <span class="end">{{order.delivery_fee_toshow}}</span></h6>
+            </div>
+        </div>
+        <div *ngIf="order.discount && order.discount > 0">
+            <div class="item_inner">
+                <h6 class="d-flex">{{'coupon' | translate}}: <span class="end">- {{order.discount_toshow}}</span>
+                </h6>
+            </div>
+        </div>
+        <div *ngIf="order.total_toshow">
+            <div class="item_inner">
+                <h6 class="d-flex">{{ order.payment && order.payment.payment_method ? order.payment.payment_method.title : ('cash' | translate) }}:
+                    <span class="end">{{order.total_toshow}}</span>
+                </h6>
+            </div>
+        </div>
+        </div>
+    </div>
+ </div>
+</div>
+<agm-map [latitude]="convertToNumber(order.address.latitude)" [longitude]="convertToNumber(order.address.latitude)" [zoom]="14">
+  <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+</agm-map>
+</div>

@@ -1,0 +1,101 @@
+<div class="container-fluid footer" [ngClass]="{'restaurantFooter':router.url=='/restaurant'}">
+  <div>
+    <div class="container p-4">
+
+      <!--Grid row-->
+      <div class="row mt-1">
+
+
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-2 mb-md-0" [ngClass]="{'col-lg-3':router.url!='/restaurant','col-lg-4':router.url=='/restaurant'}">
+          <h5 class="text-uppercase mb-2 pb-1">Main Links</h5>
+          <ul class="p-0 m-0" [ngClass]="{'d-flex justify-content-between mb-3':router.url=='/restaurant'}">
+            <!-- <li class="d-block cursor-pointer" (click)="router.navigate(['/about'])">
+              <a routerLink="/about" >About Us</a>
+            </li> -->
+            <li class="d-block cursor-pointer">
+              <a routerLink="/">Contact Us</a>
+            </li>
+            <li class="d-block cursor-pointer" (click)="router.navigate(['/terms'])">
+              <a>Terms and Conditions</a>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-2 mb-md-0" [ngClass]="{'col-lg-3':router.url!='/restaurant','col-lg-4':router.url=='/restaurant'}" *ngIf="!router.url.includes('restaurant')">
+          <h5 class="text-uppercase mb-2 pb-1">Address</h5>
+          <p>{{address}}</p>
+        </div>
+        <!--Grid column-->
+
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-2 mb-md-0" [ngClass]="{'col-lg-2':router.url!='/restaurant','col-lg-12':router.url=='/restaurant'}">
+          <h5 class="text-uppercase mb-3">Contact Us</h5>
+
+          <ul class="fa-ul" *ngIf="router.url.includes('restaurant')">
+            <li class="mb-1">
+              <span class="ms-1"><i class="fas fa-phone"></i> {{phone}}</span>
+              |<span class="ms-1">{{address}}</span>
+            </li>
+          </ul>
+          <ul class="fa-ul" *ngIf="!router.url.includes('restaurant')">
+            <li class="mb-1">
+              <span class="fa-li-custom"><i class="fas fa-phone"></i></span><span class="ms-2">{{phone}}</span>
+            </li>
+          </ul>
+        </div>
+        <!--Grid column-->
+
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-2 mb-md-0" [ngClass]="{'col-lg-4':router.url!='/restaurant','col-lg-5':router.url=='/restaurant'}" *ngIf="!router.url.includes('restaurant')">
+          <h5 class="text-uppercase mb-2 pb-1">Sponsored</h5>
+          <div class="mt-2 social-icons">
+            <span class="pay-icon1" > <img class="pay-icon" src="assets/images/amex_pay_icon.png" /></span>
+            <span class="pay-icon1"><img class="pay-icon" src="assets/images/gpay_icon.png" /></span>
+            <span class="pay-icon1"><img class="pay-icon" src="assets/images/maestro_pay_icon.png" /></span>
+            <span class="pay-icon1"><img class="pay-icon" src="assets/images/visa_pay_icon.png" /></span>
+            <span class="pay-icon1"><img class="pay-icon" src="assets/images/apple_pay_icon.png" /></span>
+          </div>
+        </div>
+        <!--Grid column-->
+
+
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-0 mb-md-0" *ngIf="router.url.includes('restaurant')">
+          <h5 class="text-uppercase mb-4">Opening hours</h5>
+          <div class="opening-hours">
+            <marquee behavior="scroll" direction="up" scrollamount="1.5" height="50px">
+            <table class="table text-center text-white">
+              <tbody class="font-color">
+                  <tr *ngFor="let availablity of availablities">
+                    <td class="text-capitalize">{{availablity?.days}}:</td>
+                    <td>{{ availablity.from || "N/A" }} - {{ availablity.to || "N/A" }}</td>
+                  </tr>
+              </tbody>
+            </table>
+          </marquee>
+          </div>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+
+    <!-- Copyright -->
+    <div class="b-top row pt-2 mt-2 copyrightsArea">
+      <div class="col-lg-8 col-md-8" [ngClass]="{'col-lg-2':router.url!='/restaurant','col-lg-12':router.url=='/restaurant'}" *ngIf="!router.url.includes('restaurant')"><p class="p-0 m-0"><strong>Coming Soon </strong><img class="app-icon" src="assets/images/footplaystore.png" /><img class="app-icon" src="assets/images/footappstore.png" /></p></div>
+      <div class="col-lg-4 col-md-4" [ngClass]="{'text-right':router.url!='/restaurant','col-lg-12':router.url=='/restaurant'}"><p class="p-0 m-0">&#169; Copyright 2024 Foodzi</p></div>
+    </div>
+
+    </div>
+    <!-- Grid container -->
+
+
+  </div>
+</div>

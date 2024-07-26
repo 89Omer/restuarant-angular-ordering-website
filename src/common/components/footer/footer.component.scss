@@ -1,0 +1,90 @@
+$themeDarkColor: #0F172B;
+$f-whiteColor: white;
+h5,p{color: $f-whiteColor;}
+
+.footer {
+  background-color: $themeDarkColor;
+  padding: 10px 0 0 0;
+  li { color: $f-whiteColor;
+    &::after {
+    /*  content: "|"; margin-left: 10px;*/
+      display: inline-block;
+      
+    }
+  }
+  li:last-child {
+    &::after {
+      display: none;
+      margin: 0;
+    }
+  }
+  a {
+    color: $f-whiteColor;
+    &:hover {
+      color: #ffb30e;
+    }
+  }
+  p {
+    color: $f-whiteColor;
+  }
+}
+
+
+.font-color {
+  color: $f-whiteColor !important;
+}
+
+div > a {
+  margin: 1px !important;
+}
+.phone {
+  margin-left: 1.65em;
+  display: flex;
+  justify-content: center;
+}
+.opening-hours{
+  overflow: hidden;
+}
+
+.social-icons{
+  a{font-size: 36px; padding: 0; margin-top: 0; vertical-align: top;}
+}
+.b-top{border-top: 1px solid #f5f5f5;}
+.fa-li-custom{
+  border-radius: 3px; background-color: $f-whiteColor;
+  padding: 5px 14px; color: $themeDarkColor;
+}
+.fa-ul{margin-left: 0;}
+.pay-icon1{margin-right: 5px;}
+.app-icon{max-width: 120px;}
+.text-right{text-align: right;}
+
+
+.footer.restaurantFooter {
+  margin-top: 20px;
+  background-color: $f-whiteColor;
+  li,a,p,td,h5 { color: $themeDarkColor;}
+}
+
+
+@media only screen and (max-width: 767px) {
+  .footer {
+    li {
+      &::after {
+        display: none;
+        margin-left: 0px;
+      }
+    }
+    p {
+      margin-top: 10px !important;
+    }
+  }
+  .copyrightsArea{
+    .text-right{text-align: left;}
+    strong{display: block;}
+  }
+
+}
+
+
+

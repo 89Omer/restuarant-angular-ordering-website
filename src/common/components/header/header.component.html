@@ -1,0 +1,344 @@
+<nav class="navbar navbar-expand-lg navbar-light  fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
+  <div class="container">
+    <a class="navbar-brand d-inline-flex forMobile" [routerLink]="['/home']"><img class="d-inline-block logo"
+        [src]="getLogo" alt="logo" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"> </span>
+    </button>
+    <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0 hdr-btns" id="navbarSupportedContent">
+      <div class="forMb">
+        <button class="navbar-toggler closeBtn" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <!-- Location start-->
+        <div *ngIf="!router.url.includes('auth')" class="me-2 pt-2 pt-lg-0 d-block d-xl-block cursor-pointer"
+          (click)="onLocationClicked()">
+          <p class="mb-0 mb-lg-2 mb-lg-0 fw-bold">
+            <i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal"> </span><span>{{
+              helper.getAddressSelected()
+              ? helper.getAddressSelected().title.split(",")[0]
+              : "Select Location"
+              }}</span>
+          </p>
+        </div>
+        <!-- Location End-->
+        <!-- search Bar start-->
+        <div class="card mb-2 mb-lg-0 searchArea">
+          <div class="card-body search-restaurant p-1">
+            <div class="tab-content mt-0" id="nav-tabContent">
+              <div class="active" id="nav-home" aria-labelledby="nav-home-tab">
+                <div class="row gx-1 gy-2 align-items-center">
+                  <div class="col px-0">
+                    <div class="input-group-icon">
+                      <label class="visually-hidden" for="inputDelivery">Search</label>
+                      <input [(ngModel)]="searchQuery"
+                        class="px-2 form-control input-box form-foodwagon-control fontSize12" id="inputDelivery"
+                        type="text" placeholder="Search for a dish" />
+                    </div>
+                  </div>
+                  <div class="d-grid col-auto px-0">
+                    <button class="btn btn-danger px-2 fontSize12" (click)="doSearch()">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- search Bar End-->
+      </div>
+      <a class="navbar-brand d-inline-flex forDesktop" [routerLink]="['/home']"><img class="d-inline-block logo"
+          [src]="getLogo" alt="logo" /></a>
+      <div class="forRight cursor-pointer">
+        <div class="text-warning mx-lg-2 mt-0 fontSize12 cursor-pointer forDesktop" *ngIf="showBranchesSection">
+          <a (click)="router.navigate(['branch'])"><strong>Branches</strong></a>
+        </div>
+        <div class="text-warning mx-lg-2 mt-0 fontSize12 cursor-pointer forDesktop" *ngIf="showDiningSection">
+          <ul class="dropdown">
+            <li><strong>Dining</strong></li>
+            <ul class="dropdownMenu">
+              <li (click)="router.navigate(['restaurant'])"><strong>Menu</strong></li>
+              <li (click)="navTableBooking(bookTablePopup)"><strong>Restaurant Booking</strong></li>
+            </ul>
+          </ul>
+        </div>
+        <div class="cursor-pointer forDesktop" *ngIf="showTakeawaySection">
+          <a class="text-warning mx-lg-2 mt-0 fontSize12" *ngIf="vendor?.meta?.takeaway_url" [href]="vendor.meta.takeaway_url" target="_blank"><strong>Takeaway</strong></a>
+          <!-- <a class="text-warning mx-lg-2 mt-0 fontSize12" href="https://takeaway-durham.lebaneat.co.uk/" target="_blank"><strong>Takeaway</strong></a> -->
+        </div>
+
+        <div class="mt-0 px-2 fontSize12 cursor-pointer forMobile">
+          <a (click)="router.navigate(['branch'])"><strong>Branches</strong></a>
+        </div>
+
+        <div class="mt-0 px-2 fontSize12 cursor-pointer forMobile" *ngIf="showDiningSection">
+          <ul class="dropdown">
+            <li>
+              <span class="forMobile">
+                <strong>Dining</strong>
+              </span>
+            </li>
+            <ul class="dropdownMenu">
+              <li (click)="router.navigate(['restaurant'])">
+                <span class="forMobile" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <strong>Menu</strong>
+                </span>
+              </li>
+              <li (click)="navTableBooking(bookTablePopup)"><strong>Restaurant Booking</strong></li>
+            </ul>
+          </ul>
+        </div>
+
+        <div class="cursor-pointer forMobile" *ngIf="showTakeawaySection">
+          <a class="mt-0 px-2 fontSize12" *ngIf="vendor?.meta?.takeaway_url" [href]="vendor.meta.takeaway_url" target="_blank"><strong>Takeaway</strong></a>
+        </div>
+
+        <div *ngIf="vendor && vendor?.meta?.table_booking"
+          class="text-warning mt-0 px-2 fontSize12 cursor-pointer forDesktop white book-table-nav">
+          <!--<strong>{{ "book_a_table" | translate }}</strong>-->
+          <ul class="dropdown">
+            <li><strong>Bar</strong></li>
+            <ul class="dropdownMenu">
+              <li><a class="text-primary"
+                  href="assets/menu/Wafi Lounge Drinks menu 140x320 12pp.pdf"><strong>Menu</strong></a></li>
+              <li (click)="navTableBooking(bookTablePopup,'bar')"><strong>Bar Booking</strong></li>
+
+            </ul>
+          </ul>
+        </div>
+
+        <div *ngIf="vendor && vendor?.meta?.table_booking" class="mt-0 px-2 fontSize12 cursor-pointer forMobile">
+          <!--<span class="forMobile" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <strong>{{ "book_a_table" | translate }}</strong>
+          </span>-->
+          <ul class="dropdown">
+            <li><span class="forMobile"><strong>Bar</strong> </span></li>
+            <ul class="dropdownMenu">
+              <li>
+                <span class="forMobile" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <a class="text-primary"
+                    href="assets/menu/Wafi Lounge Drinks menu 140x320 12pp.pdf"><strong>Menu</strong></a>
+                </span>
+              <li (click)="navTableBooking(bookTablePopup ,'bar')"><strong>Bar Booking</strong></li>
+            </ul>
+          </ul>
+        </div>
+
+        <div class="text-warning mt-0 px-2 fontSize12 cursor-pointer forDesktop white">
+          <!-- <ul class="dropdown">
+            <li (click)="navigateToUrl()"><strong>Takeaway</strong></li>
+            <ul class="dropdownMenu">
+              <li (click)="navigateToUrl()"><strong>Menu</strong></li>
+            </ul>
+          </ul> -->
+        </div>
+
+        <!-- <div class="mt-0 px-2 fontSize12 cursor-pointer forMobile">
+          <ul class="dropdown">
+            <li (click)="navigateToUrl()">
+              <span class="forMobile" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <strong>Takeaway</strong>
+              </span>
+            </li>
+            <ul class="dropdownMenu">
+              <li (click)="navigateToUrl()"><strong>Menu</strong></li>
+            </ul>
+          </ul>
+        </div> -->
+
+        <div *ngIf="vendor && vendor?.meta?.show_gallery"
+          class="text-warning mt-0 px-2 fontSize12 cursor-pointer forDesktop white"
+          (click)="router.navigate(['gallery'])">
+          <strong>Gallery</strong>
+        </div>
+
+        <div *ngIf="vendor && vendor?.meta?.show_gallery" class=" mt-0 px-2 fontSize12 cursor-pointer forMobile"
+          (click)="router.navigate(['gallery'])">
+          <span class="forMobile" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <strong>Gallery</strong>
+          </span>
+        </div>
+
+
+
+
+        <div class="d-inline mt-lg-0 ms-lg-0 ms-xl-0">
+          <!-- <div class="input-group-icon pe-2"><i class="fas fa-search input-box-icon text-primary"></i>
+          <input class="form-control border-0 input-box bg-100" type="search" placeholder="Search Restaurant" aria-label="Search" />
+        </div> -->
+
+          <div ngbDropdown class="d-inline-block cursor-pointer" *ngIf="helper.getLoggedInUser()">
+            <div class="text-center pt-2 pt-lg-0" id="dropdownBasic1" ngbDropdownToggle>
+              <img class="rounded-circle profile-pic" src="assets/images/empty_dp.png" />
+              <p class="mb-0 d-inline-block ms-2">
+                {{ helper.getLoggedInUser().name }}
+              </p>
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="forDesktop" ngbDropdownItem [routerLink]="['/my-profile']">
+                <span>My Profile</span>
+              </button>
+              <button [routerLink]="['/my-profile']" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span>My Profile</span>
+              </button>
+              <button class="forDesktop" ngbDropdownItem [routerLink]="['/my-orders']">
+                My Orders
+              </button>
+              <button [routerLink]="['/my-orders']" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span>My Orders</span>
+              </button>
+              <button class="forDesktop" ngbDropdownItem [routerLink]="['/my-bookings']">
+                {{ "my_bookings" | translate }}
+              </button>
+              <button [routerLink]="['/my-bookings']" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                {{ "my_bookings" | translate }}
+              </button>
+              <button class="forDesktop" ngbDropdownItem [routerLink]="['/saved-addresses']">
+                My Addresses
+              </button>
+              <button [routerLink]="['/saved-addresses']" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                My Addresses
+              </button>
+              <!-- <button class="forDesktop" ngbDropdownItem [routerLink]="['/restaurants']"
+                [queryParams]="{ list_for: 'favorites' }">
+                {{ "favorites" | translate }}
+              </button> -->
+              <!-- <button [routerLink]="['/restaurants']" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                {{ "favorites" | translate }}
+              </button> -->
+              <button class="forDesktop" *ngIf="eComService.getCartItems().length > 0" ngbDropdownItem
+                [routerLink]="['/check-out']">
+                My Cart
+              </button>
+              <button [routerLink]="['/check-out']" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                My Cart
+              </button>
+              <button class="forDesktop" ngbDropdownItem (click)="onLogoutClick()">
+                Logout
+              </button>
+              <button (click)="onLogoutClick()" ngbDropdownItem class="forMobile" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                Logout
+              </button>
+            </div>
+          </div>
+          <div *ngIf="
+              !router.url.includes('auth') && helper.getLoggedInUser() == null
+            " class="text-warning mx-md-1 mx-lg-2 mt-0 fontSize12 cursor-pointer text-nowrap"
+            (click)="router.navigate(['/auth/login'])">
+            <span class="forDesktop"><i class="fas fa-user me-2"></i><strong>Login</strong></span>
+
+            <button ngbDropdownItem class="forMobile loginBtn" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+              <i class="fas fa-user me-2"></i><strong>Login</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #bookTablePopup let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{ "table_booking" | translate }}
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="radio_list">
+        <!-- <radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.meta.person"> -->
+        <div class="radio-group">
+          <h5>{{ "booking_for" | translate }}</h5>
+          <div class="scroll-x">
+            <div class="items" *ngFor="let person of persons">
+              <input (change)="onOptionSelect($event, 'person')" name="person" type="radio"
+                [checked]="appointmentRequest.meta.person == person" [id]="person + 'person'"
+                class="form-check-input me-2" slot="start" [value]="person" />
+              <label class="form-check-label cursor-pointer" [for]="person + 'person'">{{ person }}
+                {{ (person == 1 ? "person" : "persons") | translate }}</label>
+            </div>
+          </div>
+        </div>
+        <!-- </radio-group> -->
+        <!-- <radio-group name="date" class="animate__animated animate__fadeInUp" [(ngModel)]="dateSelected"> -->
+        <div class="radio-group">
+          <h5>{{ "select_date" | translate }}</h5>
+          <div class="scroll-x">
+            <div *ngFor="let d of datesToShow" class="items">
+              <input [checked]="checkSelectedDate(d)" (change)="onOptionSelect($event, 'date')" name="date" type="radio"
+                [id]="d + 'date'" class="form-check-input me-2" slot="start" [value]="d" />
+              <label class="form-check-label cursor-pointer" [for]="d + 'date'">{{ this.dates[0].monthText }}{{
+                d.getDate() }}</label>
+            </div>
+          </div>
+        </div>
+        <!-- </radio-group> -->
+
+        <!-- <radio-group name="time" class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.time_from"> -->
+        <div class="radio-group">
+          <h5>{{ "select_time" | translate }}</h5>
+          <div class="scroll-x">
+            <div *ngFor="let at of availabilityTimes" class="items">
+              <input [checked]="appointmentRequest.time_from == at.time" (change)="onOptionSelect($event, 'time')"
+                name="time" type="radio" [id]="at + 'time'" class="form-check-input me-2" slot="start"
+                [value]="at.time" />
+              <label class="form-check-label cursor-pointer" [for]="at + 'time'">{{ at.timeValue }}</label>
+            </div>
+          </div>
+        </div>
+        <!-- </radio-group> -->
+        <!-- <ion-radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="dateSelected">
+            <h2>{{'select_date' | translate}}</h2>
+            <div class="scroll-x">
+                <ion-item *ngFor="let d of datesToShow" [ngClass]="(dateSelected == d) ? ' active' : ''" (click)="markSelected(d)">
+                    <ion-label>{{this.dates[0].monthText}} {{ d.getDate()}} </ion-label>
+                    <ion-radio slot="start" [value]="d"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group>
+
+        <ion-radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.time_from">
+            <h2>{{'select_time' | translate}}</h2>
+            <div class="scroll-x">
+                <ion-item class="animate__animated animate__zoomIn" *ngFor="let at of availabilityTimes">
+                    <ion-label>{{at.timeValue}}</ion-label>
+                    <ion-radio slot="start" [value]="at.time"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group> -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button [disabled]="
+          !this.appointmentRequest.meta?.person ||
+          !dateSelected ||
+          !this.appointmentRequest.time_from
+        " type="button" class="btn btn-primary white" (click)="modal.close('yes')">
+        {{ "book_a_table" | translate }}
+      </button>
+    </div>
+  </ng-template>
+</nav>

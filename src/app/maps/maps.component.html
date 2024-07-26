@@ -1,0 +1,55 @@
+<div class="main mt-8 mt-lg-10 mb-4">
+  <div class="container">
+    <h5 class="text-center mb-2">Add new Address</h5>
+    <div class="form-group mb-2">
+
+      <!-- <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+        placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+        #searchAddress id="searchAddress"> -->
+      <input type="text" class="form-control" placeholder="Enter Your Complete Address" autocorrect="off"
+        autocapitalize="off" spellcheck="off" type="text" #searchAddress id="searchAddress">
+    </div>
+    <!-- <div class="mb-2 row address-icon-list">
+      <div class="form-check col-auto">
+        <input [checked]="selectedLocation && selectedLocation.title=='home'"
+          class="form-check-input position-absolute address-select" type="radio" name="flexRadioDefault"
+          [id]="'home_radio'" [value]="'home'" (change)="onAddressTypeChange($event)" />
+
+        <div class="img_box text-center">
+          <img src="assets/images/ic_homeadd.png">
+          <label class="form-check-label mt-3 ms-2 cursor-pointer" [for]="'home_radio'"> {{'home' | translate}} </label>
+        </div>
+
+      </div>
+      <div class="form-check col-auto">
+        <input [checked]="selectedLocation && selectedLocation.title=='office'"
+          class="form-check-input position-absolute address-select" type="radio" name="flexRadioDefault"
+          [id]="'office_radio'" [value]="'office'" (change)="onAddressTypeChange($event)" />
+
+        <div class="img_box text-center">
+          <img src="assets/images/ic_office.png">
+          <label class="form-check-label mt-3 ms-2 cursor-pointer" [for]="'office_radio'"> {{'office' | translate}}
+          </label>
+        </div>
+      </div>
+      <div class="form-check col-auto">
+        <input [checked]="selectedLocation && selectedLocation.title!=='home' && selectedLocation.title!=='office'"
+          class="form-check-input position-absolute address-select" type="radio" name="flexRadioDefault"
+          [id]="'other_radio'" [value]="'other'" (change)="onAddressTypeChange($event)" />
+
+        <div class="img_box">
+          <img src="assets/images/ic_other.png">
+          <label class="form-check-label mt-3 ms-2 cursor-pointer" [for]="'other_radio'"> {{'other' | translate}}
+          </label>
+        </div>
+
+      </div>
+    </div> -->
+    <div class="text-end mb-3">
+      <button [disabled]="!selectedLocation" class="btn btn-primary rounded-pill" (click)="onSaveClick()">Save</button>
+    </div>
+    <!-- <agm-map [latitude]="convertToNumber(selectedLocation && selectedLocation.latitude)" [longitude]="convertToNumber(selectedLocation && selectedLocation.longitude)" [zoom]="zoom">
+    <agm-marker [latitude]="convertToNumber(selectedLocation && selectedLocation.latitude)" [longitude]="convertToNumber(selectedLocation && selectedLocation.longitude)"></agm-marker>
+  </agm-map> -->
+  </div>
+</div>

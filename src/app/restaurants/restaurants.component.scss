@@ -1,0 +1,142 @@
+
+.pro-pic { height: 160px; overflow: hidden;}
+@media only screen and (max-width: 767px) {
+    .img-mb{width: 100%; max-width: 240px; height: auto !important; margin: 0 auto;}
+    .testimonial {text-align: center;}
+    .category-item{margin: 0 auto;}
+}
+
+@media only screen and (max-width: 575px) {
+    .pro-pic { height: auto; overflow: visible;}
+}
+.restaurant-banner{
+  position: relative;
+    bottom: 0;
+    box-shadow: inset 0 -4px 6px 0 rgb(27 35 36 / 8%), 0 -2px 12px -2px rgb(27 35 36 / 32%), 0 -3px 6px 0 rgb(27 35 36 / 24%);
+    width: 100%;
+    margin-bottom: -120px;
+    z-index: -1;
+}
+
+.restaurant-details{
+  background: white;
+  border-radius: 15px;
+
+}
+
+.restaurant-logo{
+  margin-top: 0;
+    position: absolute;
+    top: -24px;
+    border-radius: 12px;
+    border: 1px solid #e6e3de;
+    width: 67px;
+    left: 46%;
+}
+
+.delivering{
+  width: 55%;
+  margin-left: 22%;
+}
+.order-card{
+  height: fit-content;
+}
+
+
+.cart-count{
+  align-items: center;
+  background-color: #f5f3f1;
+  border-radius: 50rem;
+  /* display: flex; */
+  flex-shrink: 0;
+  font-weight: 700;
+  height: 24px;
+  justify-content: center;
+  margin-right: 8px;
+  white-space: nowrap;
+  width: 24px;
+}
+.h-350
+{
+  height: 350px;
+}
+
+.price-header{
+  position: absolute;
+  right: 60px;
+}
+.main{
+  overflow-x: hidden;
+}
+.radio_list {
+  .radio-group {
+      width: 100%;
+      display: block;
+      padding-bottom: 25px;
+      span.end {
+          float: right;
+      }
+      .scroll-x {
+          width: 100%;
+          overflow: hidden;
+          overflow-x: scroll;
+          white-space: nowrap;
+          .items{
+              display: inline-block;
+              background: var(--white);
+              border-radius: 8px;
+              position: relative;
+              margin: 0 5px;
+              width: fit-content;
+              overflow: hidden;
+              min-width: 85px;
+              border: 2px solid var(--transparent) !important;
+              transition: all 0.2s;
+
+              // &::before {
+              //     content: "";
+              //     position: absolute;
+              //     top: 0;
+              //     left: 0;
+              //     right: 0;
+              //     bottom: 0;
+              //     margin: auto;
+              //     width: 0;
+              //     height: 0;
+              //     transition: all 0.3s;
+              //     background: var(--primary);
+              //     border-radius: 5px;
+              //     opacity: .3;
+              // }
+              &:first-child {
+                  margin-left: 20px;
+              }
+              &:last-child {
+                  margin-right: 20px;
+              }
+              &.item-radio-checked {
+                  border-color: var(--primary) !important;
+                  &::before {
+                      width: 110%;
+                      height: 110%;
+                  }
+              }
+          }
+      }
+  }
+}
+.restaurant-logo{margin: 0 auto; right: 0; left: 0;}
+@media only screen and (max-width: 991px) {
+ .form-check{padding-right: 0; text-align: left;}
+ .restaurant-banner{height: auto; margin-top: 81px;}
+}
+.menuItem-img{
+  flex-shrink: 0;
+    height: 100px;
+    margin-left: auto;
+    padding-left: 8px;
+    img{
+      height: 100px;
+      width: 100px;
+    }
+}

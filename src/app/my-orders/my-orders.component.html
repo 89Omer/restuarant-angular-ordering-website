@@ -1,0 +1,136 @@
+<div class="main">
+  <section id="testimonial">
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-lg-7 mx-auto text-center mb-2 mt-5 mt-lg-0">
+          <h5 class="fw-bold fs-2 fs-md-3 fs-lg-5 lh-sm mb-3"> {{getTitle|translate}}</h5>
+        </div>
+      </div>
+      <div class="row gx-2">
+        <!-- <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 cursor-pointer" *ngFor="let restaurant of orders" (click)="router.navigate(['restaurant'],{queryParams:{id:restaurant.id},state:{vendor:restaurant}})">
+          <div class="card card-span h-100 text-white rounded-3"><img class="img-fluid rounded-3 h-100" [src]="restaurant.vendor.image" alt="..." />
+            <div class="card-img-overlay ps-0"></div>
+            <div class="card-body ps-0">
+              <div class="d-flex align-items-center mb-3" >
+                <div class="flex-1 ms-3">
+                  <h5 class="mb-0 fw-bold text-1000">{{restaurant.vendor.name}}</h5>
+                  <span class="f-gray">restaurant.</span>
+                  <hr/>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="empty-view" *ngIf="(!orders || !orders.length) && router.url.includes('my-orders')">
+          <div style="text-align:center">
+            <div class="col-12">
+              <img class="light_img" src="assets/images/empty_orders.png" />
+            </div>
+            <div class="col-12">
+              <span *ngIf="userMe" style="color:#9E9E9E; font-weight:bold;">
+                {{ (isLoading ? 'appear_here_order' : 'empty_orders') | translate}}
+              </span>
+              <p *ngIf="!userMe" style="color:#9E9E9E; font-weight:bold;" [innerHTML]="'alert_login_msg' | translate">
+              </p>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="router.url.includes('my-orders')">
+          <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5 cursor-pointer" *ngFor="let order of orders"
+            (click)="toggleOrderExpansion(order)">
+            <h2 *ngIf="0 > order.id">{{order.type | translate}}</h2>
+            <div *ngIf="order.id > 0" class="animate__animated animate__fadeInUp">
+              <div class="item_inner">
+                <div class="item_info d-flex">
+                  <div class="itme_img center_img">
+                    <img [src]="order.vendor.image" class="crop_img">
+                  </div>
+                  <div class="item_details">
+                    <h3 class="d-flex justify-content-around">
+                      {{order.vendor.name}}
+                      <span class="end order_status text-primary">
+                        {{('order_status_'+order.status) | translate}}
+                      </span>
+                    </h3>
+                    <h4 class="">
+                      {{order.created_at}}
+                      <span class="end">
+                        {{ (order.is_guest ? 'guest_'+order.order_type : order.order_type ) |
+                                  translate}} | #{{order.id}}
+                      </span>
+                      <p> {{order.total_toshow}}</p>
+                    </h4>
+                  </div>
+                </div>
+                <div class="d-flex order_info">
+                  <div class="spesh_bar"></div>
+                  <div class="items">
+                    <h5 *ngFor="let product of order.products">
+                      <span>{{product?.vendor_product?.product?.title}} </span>&nbsp;&nbsp;
+
+                      <strong>x{{product.quantity}}</strong>
+                    </h5>
+                  </div>
+
+                  <!-- <h6 class="end" style="color: tomato;" *ngIf="order.status == 'new' || order.status == 'pending'">
+                    {{'cancel' | translate}}
+                  </h6> -->
+                  <h6 class="end" *ngIf="order.status == 'complete' && !order.reviewed">
+                    {{'rate_now' | translate}}
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="empty-view" *ngIf="(!appointments || !appointments.length) && router.url.includes('my-bookings')">
+          <div style="text-align:center">
+            <div class="col-12">
+              <img class="light_img" src="assets/images/no_tables.png" />
+            </div>
+            <div class="col-12">
+              <span *ngIf="userMe" style="color:#9E9E9E; font-weight:bold;">
+                {{ (isLoadingAppointments ? 'appear_here_appointments' : 'empty_appointments') | translate}}
+              </span>
+              <p *ngIf="!userMe" style="color:#9E9E9E; font-weight:bold;" [innerHTML]="'alert_login_msg' | translate">
+              </p>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="router.url.includes('my-bookings')">
+          <div class="TableBooking " lines="none">
+            <div *ngFor="let ap of appointments" class="cursor-pointer px-2">
+              <h2 *ngIf="0 > ap.id">{{ap.type | translate}}</h2>
+              <div *ngIf="ap.id > 0">
+                <div class="item_inner">
+                  <div class="item_info d-flex">
+                    <div class="itme_img center_img">
+                      <img [src]="ap.vendor?.image" class="crop_img">
+                    </div>
+                    <div class="item_details">
+                      <h3 class="d-flex">
+                        {{ap.vendor?.name}}
+                        <span class="end">#{{ap.id}} |
+                          <span [ngClass]="ap.status == 'accepted' ? 'order_status accepted' : 'order_status'">
+                            {{ ('appointment_status_'+ap.status) | translate}}
+                          </span></span>
+                      </h3>
+                      <h5 class="d-flex">
+                        <span> {{'booking_for' | translate}}</span> &nbsp; {{ap.date}}, {{ap.time_from}}
+                        <span class="end">{{ap?.meta?.person}} {{(ap?.meta?.person == 1 ?
+                                  'person'
+                                  :'persons') | translate}}</span>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+</div>

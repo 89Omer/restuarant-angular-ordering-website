@@ -1,0 +1,65 @@
+#demo-payment {
+  width: 100%;
+  height: 96px;
+  display: none;
+}
+
+#demo-payment-loading {
+  width: 100%;
+  height: 96px;
+  display: block;
+}
+
+
+#error {
+  width: 100%;
+  height: 25%;
+}
+
+::ng-deep #iframe-demo-payment {
+  width: 100%;
+  height: 100%;
+}
+
+.connect-card-body{
+  height: Calc(100vh - 390px);
+  overflow-y: auto !important;
+}
+.payment-header-img{
+  height: 40px;
+}
+.center_img {
+  position: relative;
+  overflow: hidden;
+  img {
+      &.crop_img {
+        height: inherit;
+      }
+  }
+}
+.light_img{
+  height: 149px;
+  width: 149px;
+}
+
+.payment-desc{text-align: left;}
+
+.login-link{
+  color: #ffb30e  !important;
+  text-decoration: underline !important;
+}
+.login-link :hover{
+  color:#ffb30e  !important;
+}
+.pay-btn :disabled{
+  color: white !important;
+}
+
+.btn-primary:disabled {
+  background-color: transparent !important;
+  color: #ffb30e !important;
+  opacity: 1;
+}
+
+.hidden{display: none !important;}
+.text-right{text-align: right;}

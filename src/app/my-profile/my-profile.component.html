@@ -1,0 +1,42 @@
+<div class="main mt-9 mt-lg-10">
+  <div class="container">
+    <div class="card shadow w-100 p-3 h-100 mb-4 for-desktop">
+      <div class="d-flex justify-content-around">
+        <div class="w-50">
+          <h5>{{userMe.name}}</h5>
+          <p>{{userMe.mobile_number}}</p>
+          <p>{{userMe.email}}</p>
+        </div>
+        <div class="w-50 text-right">
+          <img class="wallet-img"  src="assets/images/ic_menu_walletact.png" />
+         <div>
+          <h6>{{'available_balance' | translate}}</h6>
+          <h5>{{currency_icon}} {{balance}}</h5>
+         </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- For Mobile-->
+  <div class="card shadow w-100 p-3 h-100 mb-4 for-mobile">
+    <div class="text-center">
+      <img class="profile-img"  src="assets/images/empty_dp.png" />
+      <h5 >{{userMe.name}}</h5>
+      <p><i class="fa fa-phone"></i> {{userMe.mobile_number}}</p>
+      <p><i class="fa fa-envelope"></i> {{userMe.email}}</p>
+    </div>
+    <div class="d-flex justify-content-around mt-3 greyBg p-3 bgradius10">
+      <div class="w-50">
+        <img class="wallet-img"  src="assets/images/ic_menu_walletact.png" />
+      </div>
+      <div class="w-50 text-right">
+      <div>
+        <h6>{{'available_balance' | translate}}</h6>
+        <h5>{{currency_icon}} {{balance}}</h5>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!-- For Mobile End--> 
+  </div>
+</div>

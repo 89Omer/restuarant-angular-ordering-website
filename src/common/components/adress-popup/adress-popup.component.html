@@ -1,0 +1,37 @@
+<div class="row address-row">
+  <div class="">
+    <img class="popup-left-image" src="https://backend.foodzi.co.uk//storage/521/fried-chicken.png" />
+    <button type="button" class="btn btn-close rounded-circle float-end" aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <div class="col-sm-12">
+    <div class="d-flex justify-content-center mt-4">
+      <h3 *ngIf="!data || !data.title">
+        Get <span class="text-warning">food delivery</span> and more
+      </h3>
+      <h3 *ngIf="data && data.title">
+        {{data.title}}
+      </h3>
+    </div>
+    <div class="d-flex justify-content-center px-3">
+      <div class="w-100">
+        <div class="form-group w-100">
+          <!-- <label>Enter address</label> -->
+          <i class="fas fa-map-marker-alt"></i>
+          <input  type="text" class="form-control rounded-pill" (keydown.enter)="$event.preventDefault()"
+            placeholder="Enter Your Complete Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+            #searchAddress id="searchAddress">
+          <button [disabled]="!selectedLocation" class="btn btn-primary rounded-pill saveBtn"
+            (click)="onSaveClick()">Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="d-flex justify-content-center mt-2 mb-3">
+      <p *ngIf="!helper.getLoggedInUser() ">
+        <a class="btnLink text-warning cursor-pointer" (click)="onLoginClick()"> Log in</a> for your recent addresses.
+      </p>
+    </div>
+  </div>
+</div>

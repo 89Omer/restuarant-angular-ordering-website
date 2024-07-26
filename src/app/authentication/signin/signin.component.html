@@ -1,0 +1,135 @@
+<!-- <app-header></app-header> -->
+<div id="recaptcha-container"></div>
+<div class="bgColorWhite">
+  <img class="loginBgImg" src="assets/images/login-bg.jpg" /> 
+  <div class="overflow-hidden">
+    <!-- <img class="login-img" src="assets/images/banner1.jpeg" /> -->
+
+    <section *ngIf="!closeResult.includes('yes') || otpNotSent" class="pt-3 pt-lg-4 loginArea mt-8">
+
+      <div class="container">
+        <div class="row justify-content-center g-0">
+          <div class="col-12">
+            <div class="card p-4 shadow-lg">
+
+             <!--Logo Here-->
+             <h4 class="text-center">Welcome!</h4>
+              <div class="row">
+                <div class="d-flex justify-content-center mt-2 mb-2">
+                  <div class="col-auto form-check me-3">
+                    <input (ngModelChange)="onSigninMethodChange($event)" [(ngModel)]="signInMethod" name="signInMethod"
+                      mdbRadio type="radio" class="form-check-input" id="otpSignin" value="otp"> <label
+                      class="form-check-label" for="otpSignin"> Login with Otp </label>
+                  </div>
+                  <div class="form-check col-auto">
+                    <input (ngModelChange)="onSigninMethodChange($event)" [(ngModel)]="signInMethod" name="signInMethod"
+                      mdbRadio type="radio" class="form-check-input" id="emailSignin" value="password"> <label
+                      class="form-check-label" for="emailSignin">  Login with Email </label>
+                  </div>
+                </div>
+              </div>
+
+              <form [formGroup]="signinForm" (submit)="onSigninSubmit(content)"
+                class="row gx-2 gy-2 align-items-center signin-form">
+                <div class="col-12 justify-content-center">
+                  <div class="row d-block">
+                    <!--<h2 class="loginIcon"><i class="fa fa-user"></i></h2>-->
+                    <ng-container *ngIf="signInMethod=='password'">
+                      <div class="col-12 input-group-icon mb-2">
+                        <label class="visually-hidden" for="inputDelivery">Enter email</label>
+                        <input formControlName="email" class="form-control input-box form-foodwagon-control"
+                          type="email" placeholder="Your email address" />
+                        <p class="text-danger"
+                          *ngIf="signinForm.get('email')?.hasError('required') && signinForm.get('email')?.touched">
+                          Email is required
+                        </p>
+                      </div>
+                      <div class="col-12 input-group-icon mb-2">
+                        <label class="visually-hidden" for="inputDelivery">Enter password</label>
+                        <input formControlName="password" class="form-control input-box form-foodwagon-control"
+                          type="password" placeholder="Your email password" />
+                        <p class="text-danger"
+                          *ngIf="signinForm.get('password')?.hasError('required') && signinForm.get('password')?.touched">
+                          Password is required
+                        </p>
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="signInMethod=='otp'">
+                      <div class="d-flex">
+                        <div class="col-md-5 col-sm-5 me-3 w-30">
+                          <select class="form-control" formControlName="code">
+                            <option *ngFor="let country of countries; let i=index" [value]="i">{{country.alpha2Code+'
+                              '+'+'+country.callingCodes}}</option>
+                          </select>
+                        </div>
+                        <div class="input-group-icon col-md-5 col-sm-5 mb-3 w-70">
+                          <label class="visually-hidden" for="inputDelivery">Enter mobile</label>
+                          <input formControlName="phone" class="form-control input-box form-foodwagon-control"
+                            type="text" placeholder="Your mobile number without a 0" />
+                        </div>
+                      </div>
+                    </ng-container>
+                    <div class="d-grid gap-3 col-md-12 col-sm-12">
+                      <button class="btn btn-primary" type="submit">Continue</button>
+                    </div>
+                  </div>
+                </div>
+                <span class="text-danger" *ngIf="signInMethod=='otp'"><b>
+                    Note:- Please enter mobile number like 77XXXXXXX instead of 077XXXXXXX
+                  </b>
+                </span>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div>
+
+          <app-register id="register" [countries]="countries" [queryParams]="queryParams"></app-register>
+        </div>
+      </div>
+    </section>
+    <section *ngIf="closeResult && closeResult.includes('yes') && !otpNotSent " class="loginArea mt-7">
+      <div class="container">
+        <div class="row justify-content-center g-0">
+          <div class="col-12">
+            <div class="card p-4 shadow-lg">
+              <form [formGroup]="OtpForm" (submit)="onOtpSubmit()" class="row gx-2 gy-2 align-items-center signin-form">
+                <div class="col-12 justify-content-center">
+                  <div class="row">
+                    <div class="input-group-icon col-md-12 col-sm-12 mb-3 mb-3">
+                      <label class="visually-hidden" for="inputDelivery">Enter OTP</label>
+                      <input id="otpCode" formControlName="otpCode"
+                        class="form-control input-box form-foodwagon-control" type="text" placeholder="Enter OTP" />
+                    </div>
+                    <div class="d-grid gap-3 col-md-12 col-sm-12">
+                      <button class="btn btn-primary" type="submit">Continue</button>
+                    </div>
+                    <div class="col-12 text-center">
+                      <p class="cursor-pointer text-primary text-decoration-underline">OR <br> <span (click)="loginPWD()">
+                          Login with email
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">+{{selectedCode+signinForm.value.phone}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        Continue using this phone number for OTP verification?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('yes')">Yes</button>
+      </div>
+    </ng-template>
+  </div>
+</div>

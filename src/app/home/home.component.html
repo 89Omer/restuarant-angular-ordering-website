@@ -1,0 +1,352 @@
+<main class="main" id="top">
+
+  <section class="py-0 overflow-hidden homeBanner" id="home">
+   <div class="container">
+      <div class="mt-5 row pb-3 pb-md-6 py-6 py-md-9">
+        <div class="col-sm-4 col-xl-5">
+          <h2>Enjoy Our</h2>
+          <h2>Delicious Meal</h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.. 
+          Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet.</p>
+        </div>
+        <div class="col-sm-8 col-xl-7 bannerFrame">
+              <!-- Slick Carousel Start-->
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideBannerConfig">
+                <div ngxSlickItem class="slide">
+                  <img class="" src="assets/images/sorrento_banner_1.jpg" alt="..." width="100%">
+                </div>
+                <div ngxSlickItem class="slide cursor-pointer">
+                  <img class="" src="assets/images/sorrento_banner_2.jpg" alt="..." width="100%">
+                </div>
+                <div ngxSlickItem class="slide cursor-pointer">
+                  <img class="" src="assets/images/sorrento_banner_3.jpg" alt="..." width="100%">
+                </div>
+                <div ngxSlickItem class="slide cursor-pointer">
+                  <img class="" src="assets/images/sorrento_banner_4.jpg" alt="..." width="100%">
+                </div>
+
+              </ngx-slick-carousel>
+              <!-- Slick Carousel End-->
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  <!-- ============================================-->
+
+
+
+<!-- <section> begin ============================-->
+   <section class="services">
+    <div class="container">
+      <div class="col-md-12 col-sm-12 text-center">
+        <h3 class="hd_sep">How does it works</h3>
+      </div>
+       <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <div class="box">
+            <span class="works-icon"><i class="fas fa-map-marker-alt"></i></span>
+            <h4>Select location</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="box">
+            <span class="works-icon"><i class="fas fa-check-double"></i></span>
+            <h4>Create order</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="box">
+            <span class="works-icon"><i class="fas fa-dollar-sign"></i></span>
+            <h4>Pay advanced</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="box">
+            <span class="works-icon"><i class="fas fa-hamburger"></i></span>
+            <h4>Enjoy meals</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          </div>
+          </div>
+       </div>
+    </div>
+   </section>
+<!-- <section> close ============================-->  
+
+
+<!-- <section> begin ============================-->
+  <section class="aboutUs">
+    <div class="container">
+       <div class="row">
+          <div class="col-sm-5 col-lg-5">
+            <figure><img class="img-fluid" src="assets/images/aboutBg.jpg" alt="*" /></figure>
+          </div>
+          <div class="col-sm-7 col-lg-7 py-4 py-md-5 py-lg-8">
+            <h3 class="hdStyle"><span class="hd_sep">Welcome To</span>{{ vendor.name }}</h3>
+            <div>
+            <h4 class="activeColor">Best Food Ever</h4>
+            <p>Have you spent your entire day at your desk, pondering what to have for dinner tonight? If so, why not hop onto pizzadaddy.uk and peruse the menu of Pizza Daddy, renowned for their delicious pizza options? Whether you're craving your favorite classic or feeling adventurous enough to try something new, or perhaps even craft your own creation, Pizza Daddy has got you covered.
+
+              After indulging in your meal, we'd greatly appreciate hearing your thoughts on our food and service. Your feedback helps us continually improve and ensure we're delivering the best experience possible. So don't hesitate to share your thoughts with us!.</p>
+              <div (click)="navigateToMenu()" class="cursor-pointer btn-primary bookBtn" ><strong>View Our Menu</strong></div>
+            </div>
+          </div>
+       </div>
+    </div>
+   </section>
+<!-- <section> close ============================-->  
+
+
+
+  <!-- <section> begin ============================-->
+  <section class="py-0 bg-primary-gradient">
+
+    <div class="container">
+      <div class="row justify-content-center g-0 mt-0">
+        <div class="col-xl-9">
+          <!--
+          <div class="col-lg-6 text-center mx-auto mb-3 mb-lg-5 mt-4">
+            <h5 class="fw-bold text-danger fs-2 fs-md-5 lh-sm mb-sm-4 my-0 my-lg-6">How does it work</h5>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-md-3 mb-3 md-md-6">
+              <div class="text-center"><img class="shadow-icon icon-mb" src="assets/img/gallery/location.png" height="112" alt="..." />
+                <h5 class="mt-2 mt-md-4  fw-bold">Select location</h5>
+                <p class="mb-md-0">Choose the location where your food will be delivered.</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-3 md-md-6">
+              <div class="text-center"><img class="shadow-icon icon-mb" src="assets/img/gallery/order.png" height="112" alt="..." />
+                <h5 class="mt-2 mt-md-4 fw-bold">Create order</h5>
+                <p class="mb-md-0">Check over hundreds of menus to pick your favorite food</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-3 md-md-6">
+              <div class="text-center"><img class="shadow-icon icon-mb" src="assets/img/gallery/pay.png" height="112" alt="..." />
+                <h5 class="mt-2 mt-md-4 fw-bold">Pay advanced</h5>
+                <p class="mb-md-0">It's quick, safe, and simple. Select several methods of payment</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 mb-3 md-md-6">
+              <div class="text-center"><img class="shadow-icon icon-mb" src="assets/img/gallery/meals.png" height="112" alt="..." />
+                <h5 class="mt-2 mt-md-4 fw-bold">Enjoy meals</h5>
+                <p class="mb-md-0">Food is made and delivered directly to your home.</p>
+              </div>
+            </div>
+          </div>
+          -->
+          <!-- <img class="" src="assets/images/alcohol.jpg" alt="..." width="100%"> -->
+        </div>
+      </div>
+    </div><!-- end of .container-->
+
+  </section>
+  <!-- <section> close ============================-->
+  <!-- ============================================-->
+
+
+
+
+
+  <!-- <section> begin ============================-->
+    
+  <section class="py-3 overflow-hidden menuSection">
+
+    <div class="container">
+      <div class="row flex-center mb-6">
+        <div class="col-lg-7">
+            <h3 class="hdStyle text-center"><span class="hd_sep">{{'what_do_you_like_to_eat_today' | translate}}?</span></h3>
+        </div>
+      </div>
+      <div class="row flex-center">
+        <div class="col-12">
+          <ng-container *ngIf="showSkeleton">
+
+            <ngx-skeleton-loader appearance="circle" count="5" [theme]="{}"></ngx-skeleton-loader>
+          </ng-container>
+
+          <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+            <div ngxSlickItem *ngFor="let cat of categories; let i = index" class="slide"
+              (click)="router.navigate(['restaurant'])">
+              <img class="catChunkImg"
+                [src]="cat.category.mediaurls.images && cat.category.mediaurls.images.length>0  && cat.category.mediaurls.images[0].default?cat.category.mediaurls.images[0].default:'assets/images/empty_image.png'"
+                alt="...">
+              <h5 class="text-center fw-bold text-1000 mb-2">{{cat.category.title}}</h5>
+            </div>
+          </ngx-slick-carousel>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- <section> close ============================-->
+
+
+
+
+
+
+
+
+
+  <!-- begin ============================-->
+
+  <section class="section py-3 py-lg-5 testimonials">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h3 class="hdStyle"><span class="hd_sep">TESTIMONIALS</span>Customer Comments</h3>
+          <!-- Slick Carousel Start-->
+          <ngx-slick-carousel class="carousel pt-2" #slickModal="slick-carousel" [config]="slideTestimonialConfig">
+            <div ngxSlickItem *ngFor="let slide of testimonials" class="testimonialSlide slide box">
+              <p>{{ slide.title }}</p>
+              <h5>{{ slide.customerName }}</h5>
+            </div>
+          </ngx-slick-carousel>
+      
+          <!-- Slick Carousel End-->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<!-- close ============================-->
+
+
+
+
+
+
+
+<!--
+  <section id="testimonial" class="testimonial" *ngIf="!search">
+    <div class="container" *ngIf="showSkeleton">
+      <div class="gx-4 justify-content-center">
+        <ngx-skeleton-loader count="4" [theme]="{
+    'border-radius': '1rem',
+    'height': '250px',
+    'width':'250px',
+    'margin-right':'1rem'
+  }"></ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="container" *ngFor="let catPros of filteredCategories">
+      <div class="row h-100">
+        <div class="col-lg-7 mx-auto text-center mb-0 mb-lg-6">
+          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">{{catPros.category.title}}</h5>
+        </div>
+      </div>
+      <div class="row gx-4 justify-content-center">
+        <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-0 mb-lg-3 cursor-pointer"
+          (click)="router.navigate(['restaurant'])" *ngFor="let restaurant of catPros.menu_items | slice:0:4">
+          <div class="card card-span h-100 text-white rounded-3 text-center">
+            <div class="food-img">
+              <span *ngIf="catPros && restaurant.mediaurls; else elseBlock">
+                <img class="img-fluid rounded-3 img-mb food-img" [src]="
+                    restaurant && restaurant.mediaurls.images && restaurant.mediaurls.images[0].default? restaurant.mediaurls.images[0].default
+                    : 'assets/images/empty_image.png'
+                  " alt="..." />
+              </span>
+
+              <ng-template #elseBlock>
+                <img class="img-fluid rounded-3 img-mb food-img" src="assets/images/empty_image.png" alt="..." />
+              </ng-template>
+            </div>
+            <div class="card-img-overlay ps-0"></div>
+            <div class="card-body ps-0">
+              <div class="d-flex align-items-center mb-3">
+                <div class="flex-1 ms-3">
+                  <h5 class="mb-0 fw-bold text-1000">{{restaurant.title}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center mt-0 mb-4 mb-lg-5 mt-lg-3"> <a class="btn btn-lg btn-primary"
+            (click)="router.navigate(['restaurant'])">View All <i class="fas fa-chevron-right ms-2"> </i></a></div>
+      </div>
+    </div>
+  </section>
+
+-->
+  
+<!--
+<section id="testimonial" *ngIf="search">
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-lg-7 mx-auto text-center mb-6">
+          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Search Result</h5>
+        </div>
+      </div>
+      <p *ngIf="!foods || foods.length==0">{{'empty_results' |translate}}</p>
+      <div class="row gx-2" *ngIf="foods && foods.length>0">
+        <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-0 mb-lg-3 cursor-pointer"
+          (click)="router.navigate(['restaurant'])" *ngFor="let food of foods">
+          <div class="card card-span h-100 text-white rounded-3 text-center">
+            <div class="food-img">
+              <img class="img-fluid rounded-3 img-mb food-img" [src]="food.images[0]" alt="..." />
+            </div>
+            <div class="card-img-overlay ps-0"></div>
+            <div class="card-body ps-0">
+              <div class="d-flex align-items-center mb-3">
+                <div class="flex-1 ms-3">
+                  <h5 class="mb-0 fw-bold text-1000">{{food.title}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-primary"
+            (click)="router.navigate(['/restaurants'])">View All <i class="fas fa-chevron-right ms-2"> </i></a></div>
+      </div>
+    </div>
+</section> -->
+  <!-- ============================================-->
+
+
+
+
+
+  <!-- ============================================-->
+
+
+  <section class="greyBg py-0">
+    <div class="bg-holder"
+      style="background-image:url(assets/images/cta_bg.png);background-position:center bottom;background-size:100%;">
+    </div>
+    <!--/.bg-holder-->
+
+    <div class="container">
+      <div class="row flex-center mt-0 mt-lg-6">
+        <div class="col-lg-5 d-none d-lg-block" style="margin-bottom: 57px;"> 
+          <img class="w-100" src="assets/images/phone-cta-one.png" alt="..." /></div>
+        <div class="col-lg-5 mt-0 mt-md-0">
+          <h1 class="text-primary fs-2 fs-md-5">Install the app</h1>
+          <p>It's never been easier to order food. Look for the finest <br class="d-none d-xl-block" />discounts and
+            you'll be lost in a world of delectable food.</p><a class="pe-2" href="https://www.apple.com/app-store/"
+            target="_blank"><img class="app-icons" src="assets/img/gallery/app-store.svg" width="160" alt="" /></a><a
+            href="https://play.google.com/store/apps" target="_blank"><img class="app-icons"
+              src="assets/img/gallery/google-play.svg" width="160" alt="" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================-->
+  
+
+
+
+
+
+</main>

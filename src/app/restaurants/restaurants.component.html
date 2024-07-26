@@ -1,0 +1,98 @@
+<div class="main">
+  <section id="testimonial" class="testimonial">
+    <div class="container">
+      <div class="row h-100">
+        <div class="col-lg-7 mx-auto text-center mb-2 mb-lg-6">
+          <h5 class="fw-bold fs-2 fs-md-3 fs-lg-5 lh-sm mb-3 mt-4"> {{pageHeading | translate}}</h5>
+        </div>
+      </div>
+      <div class="row gx-2">
+        <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-2 mb-lg-5 cursor-pointer" *ngFor="let restaurant of vendors" (click)="listFor!=='table_booking'?router.navigate([getRestDetailURL(restaurant)],{state:{vendor:restaurant}}):onBookTabelClick(bookTablePopup,restaurant)">
+          <div class="card card-span h-100 text-white rounded-3">
+            <div class="pro-pic">
+             <img class="img-fluid rounded-3 h-100 img-mb" [src]="restaurant.image" alt="..." />
+            </div>
+            <div class="card-img-overlay ps-0"></div>
+            <div class="card-body ps-0">
+              <div class="d-flex align-items-center mb-0 mb-lg-3" >
+                <div class="flex-1 ms-3">
+                  <h5 class="mb-0 fw-bold text-1000">{{restaurant.name}}</h5><span class="text-primary fs--1 me-1"><i class="fas fa-star"></i></span><span class="mb-0 text-primary">{{restaurant.ratings}}</span>
+                </div>
+              </div>
+              <!-- <div (click)="onBookTabelClick(bookTablePopup,restaurant)">
+                <button type="button" *ngIf="listFor=='table_booking'" class="btn btn-primary rounded-pill" (click)="onBookTabelClick(bookTablePopup,restaurant)">{{'book_a_table' | translate}}</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #bookTablePopup let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{'table_booking' | translate}}</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="radio_list">
+        <!-- <radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.meta.person"> -->
+          <div class="radio-group">
+            <h5>{{'booking_for' | translate}}</h5>
+            <div class="scroll-x">
+                <div class="items" *ngFor="let person of persons">
+                  <input (change)="onOptionSelect($event,'person')" name="person" type="radio" [id]="person+'person'"  class="form-check-input me-2" slot="start" [value]="person" />
+                  <label  class="form-check-label cursor-pointer" [for]="person+'person'">{{person}} {{ (person == 1 ? 'person' : 'persons') | translate}}</label>
+                </div>
+            </div>
+          </div>
+        <!-- </radio-group> -->
+        <!-- <radio-group name="date" class="animate__animated animate__fadeInUp" [(ngModel)]="dateSelected"> -->
+          <div class="radio-group">
+          <h5>{{'select_date' | translate}}</h5>
+          <div class="scroll-x">
+              <div *ngFor="let d of datesToShow" class="items">
+                <input (change)="onOptionSelect($event,'date')" name="date" type="radio" [id]="d+'date'"  class="form-check-input me-2" slot="start" [value]="d" />
+                <label  class="form-check-label cursor-pointer" [for]="d+'date'">{{this.dates[0].monthText}}{{d.getDate()}}</label>
+              </div>
+          </div>
+          </div>
+      <!-- </radio-group> -->
+
+      <!-- <radio-group name="time" class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.time_from"> -->
+        <div class="radio-group">
+        <h5>{{'select_time' | translate}}</h5>
+        <div class="scroll-x">
+            <div *ngFor="let at of availabilityTimes" class="items">
+              <input (change)="onOptionSelect($event,'time')" name="time" type="radio" [id]="at+'time'"  class="form-check-input me-2" slot="start" [value]="at.time" />
+              <label  class="form-check-label cursor-pointer" [for]="at+'time'">{{at.timeValue}}</label>
+            </div>
+        </div>
+        </div>
+    <!-- </radio-group> -->
+        <!-- <ion-radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="dateSelected">
+            <h2>{{'select_date' | translate}}</h2>
+            <div class="scroll-x">
+                <ion-item *ngFor="let d of datesToShow" [ngClass]="(dateSelected == d) ? ' active' : ''" (click)="markSelected(d)">
+                    <ion-label>{{this.dates[0].monthText}} {{ d.getDate()}} </ion-label>
+                    <ion-radio slot="start" [value]="d"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group>
+
+        <ion-radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.time_from">
+            <h2>{{'select_time' | translate}}</h2>
+            <div class="scroll-x">
+                <ion-item class="animate__animated animate__zoomIn" *ngFor="let at of availabilityTimes">
+                    <ion-label>{{at.timeValue}}</ion-label>
+                    <ion-radio slot="start" [value]="at.time"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group> -->
+    </div>
+     </div>
+    <div class="modal-footer">
+      <button [disabled]=" !this.appointmentRequest.meta?.person || !dateSelected || ! this.appointmentRequest.time_from" type="button" class="btn btn-primary white" (click)="modal.close('yes')">{{'book_a_table' | translate}}</button>
+    </div>
+  </ng-template>
+</div>

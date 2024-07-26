@@ -1,0 +1,12 @@
+.hd_sep{text-transform: uppercase;}
+.hd_sep:after{ content:""; margin: 0 auto; margin-top: 10px;  background: url('../../assets/images/sep.png') no-repeat center top; display: block; width: 160px; height:28px; }
+.section{
+  h2{font-weight: normal; font-size: 34px; text-transform: capitalize;}
+  p{font-size: 18px;}
+}
+.about-bg{
+  background-image: url('../../assets/images/wafi-about.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.book_a_table_section{background-color: #fafafa;}

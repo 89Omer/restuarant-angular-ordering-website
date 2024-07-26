@@ -1,0 +1,195 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/css/theme";
+@import "bootstrap/scss/bootstrap";
+@import "ngx-spinner/animations/ball-clip-rotate.css";
+
+$themeDarkColor: #0F172B;
+$f-whiteColor: white;
+$secondaryColor:#ffb30e;
+$greyColor:#eeeeee;
+.bg-white{
+background-color: white;
+}
+.f-gray{
+  color: lightgray;
+}
+.bg-orange{
+  background: #ff3008;
+}
+
+.cart{
+  width: max-content;
+}
+
+.f-white{
+  color: white;
+}
+.logo{
+  height: 100px;
+}
+.cursor-pointer{
+  cursor: pointer !important;
+}
+.login-img{
+  width: 100vw;
+  height: 360px;
+}
+.food-img{
+  height: 250px !important;
+  width: 250px !important;
+  margin: 0 auto;
+}
+.bg-gray{
+  background-color: #f5f3f1;
+}
+.border-radius-12{
+  border-radius: 12px;
+}
+.h-350
+{
+  height: 350px;
+}
+.w-28{
+  width: 28% !important;
+}
+
+body .slick-slider {
+  .slide{margin: 0 12px}
+  .slick-prev {
+    &:before{
+      color: #ffb30e; font-size: 30px;
+    }
+  }
+  .slick-next {
+    &:before{
+      color: #ffb30e; font-size: 30px;
+    }
+  }
+}
+
+.homeBanner .slick-next{right: 25px !important;}
+.homeBanner .slick-prev{left: 20px !important; z-index: 2;}
+
+.homeBanner .slick-slider {
+  .slick-prev {
+    &:before{
+      color: #fff; font-size: 30px;
+    }
+  }
+  .slick-next {
+    &:before{
+      color: #fff; font-size: 30px;
+    }
+  }
+}
+
+/* Restuarant detail page/Menu Page SIdebar add footer start */
+.order-card {
+  .footer{
+    h5{font-size: 14px;}
+    p,td{font-size: 13px; padding: 0;}
+    ul{padding: 0 !important;margin: 0 !important;}
+    li{ padding: 0 1px !important; font-size: 13px;
+      a{
+        font-size: 13px;
+      }
+    }
+    .col-lg-4{width: 100% !important;}
+    .mb-4, .mb-3,p{margin-bottom: 2px !important;}
+    .p-4{padding: 0!important;}
+    .mt-4{margin-top: 10px !important;}
+    .p-3{padding: 2px !important;}
+  }
+}
+.order-card .footer li:after{margin-left:2px !important;}
+/* Restuarant detail page/Menu Page SIdebar add footer end */
+
+
+.testimonials{
+  .slick-list{padding-top: 20px !important; padding-bottom: 20px !important;}
+}
+
+
+@media only screen and (max-width: 991px) {
+  .navbar {
+    .navbar-toggler{background-color: $f-whiteColor;}
+  }
+}
+@media only screen and (max-width: 767px) {
+  .slick-next{right: 0 !important;}
+  .slick-prev{left: 0 !important; z-index: 1;}
+  .food-img{height: auto !important;}
+  .accordionMb .accordion-item{border:none !important; margin-bottom: 10px;}
+  .accordionMb .accordion-item .accordion-button{padding: 0;}
+  .accordionMb .accordion-item .accordion-button:focus{ box-shadow: none;}
+  .accordionMb .accordion-button:not(.collapsed){color: #000; background-color: transparent; box-shadow: none; outline: none;}
+  .accordionMb .accordion-body{ margin-top: 10px; padding: 5px;border: 1px solid #f3f3f3; border-radius: 7px;}
+  .accordionMb .accordion-body .displayInline:after{display: none;}
+  .accordionMb .accordion-button:not(.collapsed) .text-ellipsis{overflow: visible; height: auto;}
+  .accordionMb .accordion-button{position: relative;}
+  .accordionMb .accordion-button .text-ellipsis { overflow: hidden;  height: 1px; display: none; }
+  .accordionMb .accordion-button:not(.collapsed)::after{content: "-"; background: transparent;font-size: 40px; top: 37px; right: 10px;}
+  .accordionMb .accordion-button::after{content: "+";background: transparent;font-size: 30px; position: absolute; right: 10px; top: 0px;}
+
+  .navbar{padding-left: 0 !important; padding-right: 0 !important;}
+  .forRight .dropdown-toggle.pt-2{padding-top: 0 !important;}
+  .address-icon-list{justify-content: center;}
+  .homeBanner.mt-7{margin-top: 6rem !important;}
+  .signin-form{
+    .form-control, .input-group-icon .input-box{padding: .5rem 1rem;}
+  }
+
+  
+  .accordion-header{
+    .accordion-button.collapsed{border: 1px solid #e6e3de; color:#bdbdbd; background-color: #fff; border-radius: 25px !important; padding: 10px; 
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 10px; font-size: 16px;text-align: center; margin-bottom: 15px;}
+     h5{ margin: 0 0 4px 10px;}
+  }
+  .accordionMb{
+    .accordion-header{
+       .accordion-button:not(.collapsed){background-color:#ffb30e; border: 1px solid #ffb30e; color: #fff; border-radius: 25px; padding: 10px;
+       h5{color: #fff; margin: 0 0 4px 10px; font-size: 1.1rem;}
+      }
+    }
+  }
+  .accordionMb .accordion-body{ margin-top:0px; padding:0px; border: none; padding: 0;}
+  .menuDetailItemsCarousel, .mainMenuCarousel { 
+    .slick-list{padding:0px 20% 0 0 !important;}
+    .card{margin: 0 5px !important; text-align: center;}
+  }
+  .mainMenuItem{border: 1px solid #e6e3de; color:#bdbdbd; background-color: #fff; border-radius: 35px !important; padding:5px; 
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 10px; font-size: 16px;text-align: left; margin:0 5px 15px 5px !important;}
+
+}
+
+.lh-0{
+  line-height: 0;
+}
+
+.enlarged-img{
+  height: 300px;
+  width:-webkit-fill-available
+}
+
+.white {
+  color: white !important
+}
+#btn-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.btn-floating{
+  border-radius: 50% !important;
+    padding: 0 !important;
+    height: 2.315rem !important;
+    width: 2.315rem !important;
+}
+.w-30{
+  width: 30% !important;
+}
+
+.address-popup{
+  width: 100vw !important;
+  padding: 1rem;
+}

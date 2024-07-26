@@ -1,0 +1,114 @@
+<!-- <app-header></app-header> -->
+<!-- <div class="overflow-hidden"> -->
+<!-- <img class="login-img" src="assets/images/banner1.jpeg" /> -->
+<section *ngIf="!showOtpScreen" class="pb-9 pt-3">
+  <h4 class="text-center">OR</h4>
+  <div>
+    <div class="row justify-content-center g-0 card border-0">
+      <div class="col-12">
+        <div class="card p-4 shadow-lg">
+          <h4 class="text-center">Register</h4>
+          <form [formGroup]="registerForm" (submit)="onRegisterSubmit()"
+            class="row gx-2 gy-2 align-items-center signin-form">
+            <div class="col-12 justify-content-center">
+              <div class="row">
+                <div class="input-group-icon col-12">
+                  <label class="visually-hidden" for="inputDelivery">Enter Your Name</label>
+                  <input formControlName="name" class="form-control input-box form-foodwagon-control" type="text"
+                    placeholder="Enter Your Name" />
+                  <p class="text-danger"
+                    *ngIf="registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched">
+                    Name is required
+                  </p>
+                </div>
+                <div class="input-group-icon col-12 mt-3">
+                  <label class="visually-hidden" for="inputDelivery">Enter Your Email</label>
+                  <input formControlName="email" class="form-control input-box form-foodwagon-control" type="text"
+                    placeholder="Enter Your Email" />
+                  <p class="text-danger"
+                    *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+                    Email is required
+                  </p>
+                  <p class="text-danger"
+                    *ngIf="registerForm.get('email')?.hasError('pattern') && registerForm.get('email')?.touched">
+                    Please Enter valid Email
+                  </p>
+                </div>
+                <div class="input-group-icon col-12 mt-3">
+                  <label class="visually-hidden" for="inputDelivery">Enter Your Password</label>
+                  <input formControlName="password" class="form-control input-box form-foodwagon-control"
+                    type="password" placeholder="Enter Your Password" />
+                  <p class="text-danger"
+                    *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+                    Password is required
+                  </p>
+                </div>
+                <div class="d-flex col-12 mt-3">
+                  <div class="me-3 max-w-35">
+                    <select class="form-control" formControlName="code">
+                      <option *ngFor="let country of countries; let i=index" [value]="i">{{country.alpha2Code+'
+                          '+'+'+country.callingCodes}}</option>
+                    </select>
+                  </div>
+                  <div class="input-group-icon w-70">
+                    <label class="visually-hidden" for="inputDelivery">Enter mobile</label>
+                    <input formControlName="phone" class="form-control input-box form-foodwagon-control" type="text"
+                      placeholder="Enter Your Mobile Number without 0 or country code" />
+                  </div>
+                </div>
+                <!-- <div class="input-group-icon col-12 mt-3">
+                    <label class="visually-hidden" for="inputDelivery">Your Country</label>
+                    <input readonly formControlName="country" class="form-control input-box form-foodwagon-control"
+                      type="text" placeholder="Enter Your Country" />
+                  </div>
+                  <div class="input-group-icon col-12 mt-3">
+                    <label class="visually-hidden" for="inputDelivery">Your Phone</label>
+                    <input readonly formControlName="mobile_number"
+                      class="form-control input-box form-foodwagon-control" type="text"
+                      placeholder="Enter Your Country" />
+                  </div> -->
+                <div class="gap-3 col-12 justify-content-center mt-3">
+                  <button class="btn btn-primary w-100" type="submit">Register</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section *ngIf="showOtpScreen">
+  <div class="container">
+    <div class="row justify-content-center g-0">
+      <div class="col-12">
+        <div class="card p-4 shadow-lg">
+          <form [formGroup]="OtpForm" (submit)="onOtpSubmit()" class="row gx-2 gy-2 align-items-center signin-form">
+            <div class="col-12 justify-content-center">
+              <div class="row">
+                <div class="input-group-icon col-md-6 col-sm-12 mb-3 mb-md-0">
+                  <label class="visually-hidden" for="inputDelivery">Enter OTP</label>
+                  <input formControlName="otpCode" class="form-control input-box form-foodwagon-control" type="text"
+                    placeholder="Enter OTP" />
+                </div>
+                <div class="d-grid gap-3 col-md-6 col-sm-12">
+                  <button class="btn btn-primary" type="submit">Continue</button>
+                </div>
+                <div class="text-center">
+                  <p class="cursor-pointer text-primary text-decoration-underline">OR <br> <span (click)="loginPWD()">
+                      Login with email
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- </div> -->

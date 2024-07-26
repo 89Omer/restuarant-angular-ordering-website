@@ -1,0 +1,17 @@
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
+body {
+  margin: 0;
+}
+.gallery-item {
+  margin: 5px;
+}
+.text-canter{text-align: center;}
+
+::ng-deep video{
+  position: absolute;
+  top: 137px;
+  left: 0;
+  width: 100% !important;
+  height: 70%;;
+}

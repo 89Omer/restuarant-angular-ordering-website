@@ -1,0 +1,27 @@
+<main class="main">
+
+    <!--<div class="m-auto text-center p-2">
+    <img class="w-9"[src]="getLogo" />
+    </div>-->
+    <div class="restaurantBannerArea"><img class="login-img restaurant-banner" src="assets/images/vendor-banner.webp" /></div>
+        <div class="container">
+            <div class="row mb-7">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center mt-0 underline">
+                        <h2>Select <span class="text-warning">Branch</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
+                <div class="col-sm-12 col-md-6 col-lg-3 mb-20-mobile" *ngFor="let branch of branches; let i = index">
+                    <div class="gallery" [ngClass]="{'darktheme': i % 2 === 0, 'img-border': i % 2 !== 0}">
+                        <div (click)="selectBranch(branch.id)"class="cursor-pointer">
+                            <img src="assets/img/gallery/lebaneat-mixed-platter.jpg" alt="Branch Image">
+                            <div class="branch-name d-flex align-items-center">{{ branch.name }} - {{ branch.address }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>

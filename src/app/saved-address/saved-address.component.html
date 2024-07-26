@@ -1,0 +1,44 @@
+<app-maps (savedAddressEvent)="onAddressSaved($event)"></app-maps>
+<div class="main">
+  <div class="container text-center mt-4 mt-md-8 mt-lg-9">
+    <h5 class="text-center mb-2">Saved Addresses</h5>
+    <div *ngIf="(!addresses || !addresses.length)" class="empty-view animate__animated animate__fadeInUp">
+      <div style="text-align:center">
+        <div class="col-12">
+          <img class="light_img" src="assets/images/empty_address.png" />
+        </div>
+        <div class="col-12">
+          <span style="color:#9E9E9E; font-weight:bold;">
+            {{ ('empty_addresses') | translate}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!-- <div class="col-12 mb-2 mt-4 mb-md-4">
+        <button class="btn btn-primary float-center rounded-pill"
+          [routerLink]="['/add-address']">{{'add_new' | translate}}</button>
+      </div> -->
+      <div *ngFor="let address of addresses" class="col-6 ms-2 mb-4 mb-md-4 address-list">
+        <div class="item_inner d-flex">
+          <input class="check-btn" lass="form-check-input" type="radio" name="flexRadioDefault" [id]="address.id"
+            slot="start" value="{{address.id}}" (change)="addressSelected(address)" />
+          <div [ngSwitch]="address.title" class="img_box ion-text-center">
+            <img src="assets/images/ic_homeadd.png" *ngSwitchCase="'home'">
+            <img src="assets/images/ic_office.png" *ngSwitchCase="'office'">
+            <img src="assets/images/ic_other.png" *ngSwitchDefault>
+          </div>
+          <div class="text_box">
+            <label class="form-check-label cursor-pointer" [for]="address.id"><b>
+                {{address.title.split(',')[0] | translate}}
+              </b>
+            </label>
+            <p>
+              {{address.formatted_address}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

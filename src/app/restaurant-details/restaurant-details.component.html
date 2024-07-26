@@ -1,0 +1,707 @@
+<div class="main restaurantPage">
+  <div class="restaurantBannerArea"><img class="login-img restaurant-banner" src="assets/images/vendor-banner.webp" /></div>
+  <!-- <div class="p-3">
+      <h4 class="">{{restaurant.name}}</h4>
+      <span>
+        <i class="fas fa-star text-primary"></i>  {{restaurant.rating}}
+        {{restaurant.ratingCount}} reviews
+      </span>
+      &nbsp; &nbsp;
+      <i class="far fa-heart text-danger cursor-pointer"></i>
+      <br />
+      <span>
+        <i class="fa-solid fa-location-dot"></i>
+        3.12 mile | ilford
+      </span>
+    </div> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-3 mt-7 mt-sm-0 mb-5 p-sm-0 p-md-1 d-md-block d-none">
+        <div class="stickyBar card shadow py-3">
+          <ul class="nav d-block list-scroll">
+            <li class="nav-item cursor-pointer list-group-item d-flex align-items-center" *ngFor="let category of categories"
+            [ngClass]="{ 'active': category === selectedCategory }" (click)="selectCategory(category)">
+            <img [src]="getFirstImageUrl(category)" alt="{{ category.category.title }}" class="category-image">
+              <a class="nav-link px-0 py-0">{{ category.category.title }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Vendor Section -->
+      <div class="col-md-6 col-sm-12 mtMb-10">
+
+        <div *ngIf="vendor" class="card restaurant-details shadow text-center py-4 mb-4 pB-3">
+          <img [src]="vendor.image" class="restaurant-logo" />
+
+          <div class="text-center mt-3 px-2">
+            <h4 class="">{{ vendor.name }}</h4>
+            <span>
+              <i class="fas fa-star text-primary"></i> {{ vendor.ratings }}
+              {{ vendor.ratings_count }} reviews
+            </span>
+            &nbsp; &nbsp;
+            <span (click)="toggleFavorite()">
+              <span *ngIf="getFavClass() == 'far'">
+                <i class="far fa-heart text-danger cursor-pointer"></i>
+              </span>
+              <span *ngIf="getFavClass() == 'fa'">
+                <i class="fa fa-heart text-danger cursor-pointer"></i>
+              </span>
+            </span>
+            <br />
+            <span>
+              <i class="fa fa-map-marker text-primary"></i>
+              {{ showVendorDistance }}
+            </span>
+            <br />
+            <span>{{ showVendorAddress }}</span>
+            <div class="restaurantDetailsBox">
+              <div class="bg-gray border-radius-12 d-flex delivering justify-content-around mt-3"
+                *ngIf="vendor.meta?.free_delivery && checkIsDelivery">
+                <!-- <div class="flex-row">
+                  <div class=""><b>Delivering now</b></div>
+                  <div><a>
+                      <b>
+                        I want to collect
+                      </b>
+                    </a>
+                  </div>
+                </div> -->
+                <div class="flex-row">
+                  <div>
+                    <span [innerHTML]="vendor.meta?.free_delivery">
+                      <!-- {{vendor.meta?.free_delivery}} -->
+                    </span>
+                    <!-- <span>
+                      Free delivery for orders over
+                      <b> £{{ vendor.minimum_order }} </b>
+                      in {{ vendor.area }}
+                    </span> -->
+                  </div>
+                </div>
+              </div>
+            
+              <div>
+                <span>
+                  <i *ngIf="isOpen" class="fa fa-circle text-primary" aria-hidden="true"></i>
+                  <i *ngIf="!isOpen" class="fa fa-circle text-danger" aria-hidden="true"></i>
+                  {{ isOpen ? "Open" : "Closed" }}
+                </span>
+                <!-- <div><span class="tag_is_strong"> Get 20% discount on your orders</span></div> -->
+              </div>
+              <div class="bg-gray border-radius-12 d-flex delivering justify-content-around mt-3"
+                *ngIf="checkMinimum() || checkMaxDelivery()">
+                <div class="flex-row">
+                  <div>
+                    <p *ngIf="checkMinimum">
+                      <span *ngIf="vendor.minimum_order;else noMinimmumOrder">Min order is
+                        <b>£{{ vendor.minimum_order }} </b>
+                      </span>
+                      <ng-template #noMinimmumOrder>
+                        <span>
+                          No minum Order
+                        </span>
+                      </ng-template>
+                    </p>
+                    <ng-container *ngIf="checkIsDelivery">
+                      <p *ngIf="checkMaxDelivery()">
+                        <span *ngIf="vendor.maximum_delivery_distance;else nomaxDistance">Max delivery
+                          <b>{{ vendor.maximum_delivery_distance }}</b> miles only
+                        </span>
+                        <ng-template #nomaxDistance>
+                          <span>
+                            No Maximum Delivery Distance
+                          </span>
+                        </ng-template>
+                      </p>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button (click)="onclick()" class="btn btn-primary white moreDetalBtn"> 
+              {{ ReadMore?"More":"Less" }}
+              </button>
+              <ng-container *ngIf="visible">
+                <div class="">
+                  <div class="bg-gray border-radius-12 d-flex delivering justify-content-around mt-2"
+                  *ngIf="vendor.meta?.free_delivery && checkIsDelivery">
+                  <!-- <div class="flex-row">
+                    <div class=""><b>Delivering now</b></div>
+                    <div><a>
+                        <b>
+                          I want to collect
+                        </b>
+                      </a>
+                    </div>
+                  </div> -->
+                  <div class="flex-row">
+                    <div>
+                      <span [innerHTML]="vendor.meta?.free_delivery">
+                        <!-- {{vendor.meta?.free_delivery}} -->
+                      </span>
+                      <!-- <span>
+                        Free delivery for orders over
+                        <b> £{{ vendor.minimum_order }} </b>
+                        in {{ vendor.area }}
+                      </span> -->
+                    </div>
+                  </div>
+                  </div>
+                
+                  <div>
+                    <span>
+                      <i *ngIf="isOpen" class="fa fa-circle text-primary" aria-hidden="true"></i>
+                      <i *ngIf="!isOpen" class="fa fa-circle text-danger" aria-hidden="true"></i>
+                      {{ isOpen ? "Open" : "Closed" }}
+                    </span>
+                    <!-- <div><span class="tag_is_strong"> Get 20% discount on your orders</span></div> -->
+                  </div>
+                  <div class="bg-gray border-radius-12 d-flex delivering justify-content-around mt-2"
+                    *ngIf="checkMinimum() || checkMaxDelivery()">
+                    <div class="flex-row">
+                      <div>
+                        <p *ngIf="checkMinimum">
+                          <span *ngIf="vendor.minimum_order;else noMinimmumOrder">Min order is
+                            <b>£{{ vendor.minimum_order }} </b>
+                          </span>
+                          <ng-template #noMinimmumOrder>
+                            <span>
+                              No minum Order
+                            </span>
+                          </ng-template>
+                        </p>
+                        <ng-container *ngIf="checkIsDelivery">
+                          <p *ngIf="checkMaxDelivery()">
+                            <span *ngIf="vendor.maximum_delivery_distance;else nomaxDistance">Max delivery
+                              <b>{{ vendor.maximum_delivery_distance }}</b> miles only
+                            </span>
+                            <ng-template #nomaxDistance>
+                              <span>
+                                No Maximum Delivery Distance
+                              </span>
+                            </ng-template>
+                          </p>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+
+          </div>
+        </div>
+        <div class="d-md-none d-sm-block order-1-600px">
+          <div class="">
+            <ngx-slick-carousel id="mainMenuCarousel" class="carousel mainMenuCarousel" #slickModal="slick-carousel" [config]="mainMenuCarousel">
+              <div class="mainMenuItem cursor-pointer slide" *ngFor="let category of categories"
+              [ngClass]="{ 'active': category === selectedCategory }" (click)="selectCategory(category)" ngxSlickItem>
+              <img [src]="getFirstImageUrl(category)" alt="{{ category.category.title }}" class="category-image">
+                <a class="nav-link px-0 py-0">{{ category.category.title }}</a>
+            </div>
+          </ngx-slick-carousel>
+          </div>
+        </div>
+        <div *ngIf="selectedCategory" class="order-2-600px">
+          <h4 class="mb-0 forDesktop">{{ selectedCategory.category.title }}</h4>
+          <div class="flex-column text-ellipsis">
+            <div class="card p-3 mb-3 cursor-pointer displayInline forDesktop"
+              *ngFor="let menuItem of selectedCategory.menu_items" (click)="onFoodClick(menuItem.id, content)">
+              <!-- Display menu item details -->
+              <h5 class="mb-0 forDesktop">{{ menuItem.title }} </h5>
+              <p class="mb-0 forDesktop">{{ menuItem.detail }}</p>
+              <span class="forDesktop">
+                <b> £ {{ menuItem.price }} </b>
+              </span>
+              <div class="menuItem-img forDesktop" *ngIf="
+                      menuItem.mediaurls.images &&
+                      menuItem.mediaurls.images.length &&
+                      !menuItem.mediaurls.images[0].default.includes(
+                        'assets/images/empty_image.png'
+                      )
+                    ">
+                <img class="rounded-3" [src]="menuItem.mediaurls.images[0].default" />
+              </div>
+            </div>
+            <ngb-accordion #acc="ngbAccordion" class="forMobile accordionMb">
+              <ngb-panel>
+                <ng-template ngbPanelTitle>
+                  <div class="menuTitle">
+                    <h5 class="mb-0">{{ selectedCategory.category.title }}</h5>
+                    <div class="text-ellipsis">
+                      {{ handleAccordiontitle(selectedCategory) }}
+                    </div>
+                    <!-- <i class="fas fa-plus float-right"></i> -->
+                  </div>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <div class="mobile-card">
+                    <ngx-slick-carousel class="carousel menuDetailItemsCarousel" #slickModal="slick-carousel" [config]="menuDetailItemsCarousel">
+                      <div class="card p-3 mb-3 cursor-pointer displayInline"
+                        *ngFor="let menuItem of selectedCategory.menu_items" (click)="onFoodClick(menuItem.id, content)">
+                        <div class="card-flex slide" ngxSlickItem>
+                          <div>
+                            <h5 class="mb-0 forMobile">
+                              {{ menuItem.title }}
+                            </h5>
+                            <p class="mb-0 forMobile">
+                              {{ menuItem.detail }}
+                            </p>
+                            <span class="forMobile">
+                              <b> £ {{ menuItem.price }} </b>
+                            </span>
+                          </div>
+                          <div class="menuItem-img" *ngIf="
+                              menuItem.mediaurls.images &&
+                              menuItem.mediaurls.images.length &&
+                              !menuItem.mediaurls.images[0].default.includes(
+                                'assets/images/empty_image.png'
+                              )
+                            ">
+                            <img class="rounded-3" height="100" [src]="menuItem.mediaurls.images[0].default" />
+                          </div>
+                        </div>
+                      </div>
+                    </ngx-slick-carousel>  
+                  </div>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+            <div *ngIf="selectedCategory.menu_items && selectedCategory.menu_items.length == 0">
+              <div>
+                <p class="mb-0">Loading...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart / Selected Orders -->
+      <div class="col-md-3 order-card mT-3 p-sm-0 p-md-1 order-3-600px">
+        <div class="stickyBarRight">
+          <div class="card shadow restaurant-details py-2">
+            <div *ngIf="!bookTableOnly" class="d-flex justify-content-around border-bottom px-2">
+              <div class="flex-row">
+                <div>
+                  <h5>Your order</h5>
+                </div>
+                <div *ngIf="eComService.getCartItems().length > 0 && isOpen">
+                  <span class="text-success">You're all set</span>
+                </div>
+                <div *ngIf="!isOpen">
+                  <span class="text-danger">Sorry we are closed!</span>
+                </div>
+              </div>
+              <div class="flex-row">
+                <div>
+                  <h5>£{{ getTotalCartItemPrice() }}</h5>
+                </div>
+              </div>
+            </div>
+            <!-- //change here -->
+            <div class="text-center border-bottom pt-3">
+              <button *ngIf="!bookTableOnly" [disabled]="eComService.getCartItems().length == 0"
+                class="btn btn-primary rounded-pill white btn-TabPad" (click)="onCheckoutClick()">
+                Go to checkout
+              </button>
+              <button *ngIf="bookTableOnly" class="btn btn-primary rounded-pill white btn-TabPad"
+                (click)="onBookTabelClick(bookTablePopup)">
+                {{ "book_a_table" | translate }}
+              </button>
+
+              <!-- Switch Btn Start -->
+              <div class="btn-switch" *ngIf="!bookTableOnly">
+                <input [checked]="eComService.getDeliveryTpe() == 'takeaway'" type="radio" name="food"
+                  id="collectionTime" hidden value="takeaway" (change)="onOrderTypeSelected($event)" />
+                <label for="collectionTime" [ngClass]="{'w-100':!checkIsDelivery}">
+                  <i class="fa fa-shopping-bag"></i>
+                  <span>Collection <br> {{getDeliveryTime('collection_time')}}</span>
+                </label>
+                <ng-container *ngIf="checkIsDelivery">
+
+                  <input [disabled]="dIsOpen == false" type="radio" name="food" id="deliveryTime" hidden value="normal"
+                    [checked]="eComService.getDeliveryTpe() == 'normal'" (change)="onOrderTypeSelected($event)" />
+                  <label for="deliveryTime">
+                    <i class="fa fa-motorcycle"></i>
+                    <span>Delivery <br> {{getDeliveryTime('delivery_time')}}</span>
+                  </label>
+                </ng-container>
+              </div>
+
+              <div *ngIf="dIsOpen == false && checkIsDelivery">
+                <span class="bg-warning text-white px-2" role="alert">Delivery is closed!</span>
+              </div>
+              <div class="px-3">
+                <div class="row" *ngIf="orderType == 'takeaway' && !bookTableOnly">
+                  <div class="col-12 text-start">
+                    <!-- <h5>{{ "reaching_in" | translate }}</h5>-->
+                  </div>
+                  <!-- Default radio -->
+                  <!--<div class="form-check ms-3 col-4" *ngFor="let time of reachTimeArray">
+                    <input [checked]="eComService.getReachingTime() == time.value" class="form-check-input" type="radio"
+                      name="reachingTime" [id]="time.value" [value]="time.value" (change)="onReachTimeSelect($event)" />
+                    <label class="form-check-label" [for]="time.value">
+                      {{ time.key }}
+                    </label>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="py-2 px-2" *ngIf="!bookTableOnly">
+              <div *ngFor="let item of eComService.getCartItems()" class="d-flex justify-content-between">
+                <div>
+                  <span class="d-inline-flex cart-count">{{
+                    item.quantity
+                    }}</span>
+                  <span class="cart-title" [title]="item.title">{{
+                    truncateText(item.title, 25)
+                    }}</span>
+                </div>
+                <div>
+                  <span class="icons pricevalue">£{{ calculateCartItemPrice(item) }}</span>
+                  <span class="cursor-pointer" (click)="onDeleteClick(item)">
+                    <i class="fa fa-trash text-danger me-0 me-lg-2" aria-hidden="true"></i>
+                  </span>
+                  <span class="cursor-pointer" (click)="oneditClick(item,content)">
+                    <i class="fas fa-edit text-primary me-0 me-lg-1" aria-hidden="true"></i>
+                  </span>
+                </div>
+              </div>
+              <!-- <div class="bg-gray border-radius-12 d-flex delivering justify-content-around mt-3"
+                *ngIf="checkMinimum()">
+
+                <div class="flex-row">
+                  <div>
+                    <span>
+                      Minimum Order is
+                      <b> £{{ vendor.minimum_order }} </b>
+                    </span>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <!-- Footer Start-->
+          <app-footer></app-footer>
+          <!-- Footer End-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title wd70m" id="modal-basic-title" [title]="selectedFood?.title">
+        {{ truncateText(selectedFood?.title, 25) }}
+      </h5>
+      <!-- <h5 class="modal-title price-header" id="modal-basic-title">
+        £{{
+          selectedFood?.quantity > 1
+            ? totalPrice(calculatePrice(selectedFood), selectedFood?.quantity)
+            : calculatePrice(selectedFood)
+        }}
+      </h5> -->
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="text-center mb-3">
+        <img *ngIf="
+            selectedFood &&
+            selectedFood?.mediaurls &&
+            selectedFood?.mediaurls.images &&
+            selectedFood?.mediaurls.images.length &&
+            !selectedFood?.mediaurls.images[0].default.includes(
+              'assets/images/empty_image.png'
+            )
+          " class="rounded-3 enlarged-img" [src]="selectedFood?.mediaurls.images[0].default" />
+      </div>
+
+      <hr *ngIf="selectedFood?.addon_groups?.length > 0" />
+      <div *ngIf="selectedFood?.addon_groups?.length > 0" class="modal-scroll">
+        <div *ngFor="let group of selectedFood?.addon_groups; let i = index">
+          <div class="p-1" *ngIf="checkParent(group)">
+            <div class="w-100">
+              <div class="form-check cursor-auto">
+                <input [disabled]="checkDisabledGroup(i,group)" [id]="group.id" *ngIf="group.choose_group_choice === 1 "
+                  class="form-check-input" type="radio" [name]="'selectedGroup_' + group.id" [id]="group.id"
+                  [value]="true" [checked]="checkedit(group)" [(ngModel)]="group.selected"
+                  (change)="hancleChangeGroupCheckbox($event,group)" (click)="onRadioClick(group)" />
+                <input [disabled]="checkDisabledGroup(i,group)" [id]="group.id" *ngIf="group.choose_group_choice > 1"
+                  class="form-check-input" type="checkbox" [name]="'selectedGroup_' + group.id" [id]="group.id"
+                  [value]="true" [(ngModel)]="group.selected" (change)="hancleChangeCheckbox(group)"
+                  [checked]="checkedit(group)" />
+                <label class="form-check-label group_line_style" for="flexCheckDefault">
+                  {{ group.title}}
+                  <span class="ms-2" *ngIf="group.price && group.price > 0">
+                    + <b>£{{ group.price }}</b></span>
+                  <span class="ms-2 margin_line_choice"
+                    *ngIf="group.max_choices > 0 && group.min_choices > 0 else optional">
+                    <label class="tag_is_strong">Required</label>
+                  </span>
+                  <ng-template #optional>
+                    <span class="ms-2 margin_line_choice">
+                      <label class="tag_is_strong">Optional</label>
+                    </span>
+                  </ng-template>
+                </label>
+              </div>
+            </div>
+            <!-- <div
+              *ngIf="group.max_choices == 1 && group.selected"
+              style="margin-left: 5px"
+            >
+              <h5 class="w-100">
+                Choices (Select upto - {{ group.max_choices }})
+              </h5>
+              <div
+                class="form-check list-items"
+                *ngFor="let cho of group.addon_choices"
+              >
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  [name]="'flexRadioDefault' + group.id"
+                  [id]="cho.id"
+                  [value]="cho.id"
+                  (change)="radioChange($event, group)"
+                />
+                <label class="form-check-label" [for]="cho.id">
+                  {{ cho.title }} </label
+                ><span class="ms-2" *ngIf="cho.price && cho.price > 0">
+                  + <b>£{{ cho.price }}</b></span
+                >
+              </div>
+            </div> -->
+            <div *ngIf="group.selected">
+              <h5 class="w-100 px-2 mt-2" *ngIf="group.max_choices > 0">
+                (You can choose upto {{ group.max_choices }})
+              </h5>
+              <div class="form-check list-items flex-item" *ngFor="let cho of group.addon_choices">
+                <div class="d-flex justify-content-center" *ngIf="group.choices_style=='counter'">
+                  <div (click)="onChoiceQuantityChange('subtract', cho)">
+                    <i class="fa fa-minus text-primary cursor-pointer"></i>
+                  </div>
+                  <div class="mx-3">{{checkEditQuantity(cho,group) }}</div>
+                  <div (click)="onChoiceQuantityChange('add', cho,group)">
+                    <i class="fa fa-plus text-primary cursor-pointer"></i>
+                  </div>
+                </div>
+                <ng-container *ngIf="group.choices_style!='counter'">
+
+                  <input [id]="cho.id" [type]="group.choices_style"
+                    (change)="onChoiceQuantityChange('',cho,group,$event)" [(ngModel)]="cho.selected" />
+                </ng-container>
+                <!-- <input class="form-check-input" type="checkbox"
+                    [name]="'flexCheckDefault' + group.id" [id]="cho.id" [value]="cho.id" [(ngModel)]="cho.selected"
+                    [disabled]="checkDisabled(group, cho)" /> -->
+                <label class="form-check-label ml-4"> {{ cho.title }} </label><span class="ms-2"
+                  *ngIf="cho.price && cho.price > 0">
+                  + <b>£{{ getChoicePrice(group,cho,selectedFood) }}</b></span>
+              </div>
+            </div>
+          </div>
+          <!-- <hr *ngIf="i != selectedFood?.addon_groups.length - 1" class="m-1" /> -->
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="d-flex w-100 justify-content-center">
+        <div (click)="onQuantityChange('subtract', toppings, clearCartWarning)">
+          <i class="fa fa-minus text-primary cursor-pointer"></i>
+        </div>
+        <div class="mx-3">{{ selectedFood?.quantity }}</div>
+        <div (click)="onQuantityChange('add', toppings, clearCartWarning)">
+          <i class="fa fa-plus text-primary cursor-pointer"></i>
+        </div>
+      </div>
+      <!-- <div class="d-flex">
+        <span class="text-warning">Add your quantity</span>
+      </div> -->
+      <button [disabled]="selectedFood?.quantity <= 0" type="button" class="btn btn-primary w-100 rounded-pill"
+        (click)="onProceedClicked(selectedFood)?modal.close('ok'):''">
+        <!-- (click)="handleSetPrice(calculatePrice(selectedFood));modal.close('ok')"> -->
+        <div class="d-flex justify-content-between">
+          <span>
+            Add to cart
+          </span>
+          <span>
+            £{{
+            selectedFood?.quantity > 1
+            ? totalPrice(calculatePrice(selectedFood), selectedFood?.quantity)
+            : calculatePrice(selectedFood)
+            }}
+          </span>
+        </div>
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #toppings let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{ truncateText(selectedFood?.title, 20) }}
+      </h4>
+      <h5 class="modal-title price-header" id="modal-basic-title">
+        £{{ calculatePrice(selectedFood) }}
+      </h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <h4 class="w-100">Please Choose</h4>
+      <div *ngFor="let group of addOns">
+        <div class="w-100">
+          <label class="modal-title">
+            <input class="form-check-input" type="radio" [name]="'selectedGroup_' + group.id" [id]="group.id"
+              [value]="true" [(ngModel)]="group.selected" (change)="radioGroupChange($event, group, selectedFood)" />
+            {{ group.title }} <b>£{{ group.price }}</b>
+          </label>
+        </div>
+        <div *ngIf="group.max_choices == 1 && group.selected" style="margin-left: 5px">
+          <h5 class="w-100 px-2 mt-2">
+            You can choose upto ({{ group.max_choices }})
+          </h5>
+          <div class="form-check me-3" *ngFor="let cho of group.addon_choices">
+            <input class="form-check-input" type="radio" [name]="'flexRadioDefault' + group.id" [id]="cho.id"
+              [value]="cho.id" (change)="radioChange($event, group)" />
+            <label class="form-check-label" [for]="cho.id">
+              {{ cho.title }} </label><span class="ms-2">{{ cho.priceToShow }}</span>
+          </div>
+        </div>
+        <div *ngIf="group.max_choices != 1 && group.selected" style="margin-left: 5px">
+          <h5 class="w-100 px-2 mt-2">
+            You can choose upto {{ group.max_choices }})
+          </h5>
+          <div class="form-check me-3" *ngFor="let cho of group.addon_choices">
+            <input class="form-check-input" type="checkbox" [name]="'flexCheckDefault' + group.id" [id]="cho.id"
+              [value]="cho.id" [(ngModel)]="cho.selected" [disabled]="checkDisabled(group, cho)" />
+            <label class="form-check-label"> {{ cho.title }} </label><span class="ms-2">{{ cho.priceToShow }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('ok')">
+        OK
+      </button>
+    </div>
+  </ng-template>
+  <ng-template #clearCartWarning let-modal>
+    <!-- <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{selectedFood?.title}}</h4>
+      <h5 class="modal-title price-header" id="modal-basic-title"> £{{selectedFood?.price}}</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div> -->
+    <div class="modal-body">
+      {{ "clear_cart_message" | translate }}
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('yes')">
+        CLEAR NOW
+      </button>
+      <button type="button" class="btn btn-primary ms-2" (click)="modal.dismiss('Cross click')">
+        CANCEL
+      </button>
+    </div>
+  </ng-template>
+  <ng-template #bookTablePopup let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        {{ "table_booking" | translate }}
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="radio_list">
+        <!-- <radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.meta.person"> -->
+        <div class="radio-group">
+          <h5>{{ "booking_for" | translate }}</h5>
+          <div class="scroll-x">
+            <div class="items" *ngFor="let person of persons">
+              <input (change)="onOptionSelect($event, 'person')" name="person" type="radio" [id]="person + 'person'"
+                class="form-check-input me-2" slot="start" [value]="person" />
+              <label class="form-check-label cursor-pointer" [for]="person + 'person'">{{ person }}
+                {{ (person == 1 ? "person" : "persons") | translate }}</label>
+            </div>
+          </div>
+        </div>
+        <!-- </radio-group> -->
+        <!-- <radio-group name="date" class="animate__animated animate__fadeInUp" [(ngModel)]="dateSelected"> -->
+        <div class="radio-group">
+          <h5>{{ "select_date" | translate }}</h5>
+          <div class="scroll-x">
+            <div *ngFor="let d of datesToShow" class="items">
+              <input (change)="onOptionSelect($event, 'date')" name="date" type="radio" [id]="d + 'date'"
+                class="form-check-input me-2" slot="start" [value]="d" />
+              <label class="form-check-label cursor-pointer" [for]="d + 'date'">{{ this.dates[0].monthText }}{{
+                d.getDate() }}</label>
+            </div>
+          </div>
+        </div>
+        <!-- </radio-group> -->
+
+        <!-- <radio-group name="time" class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.time_from"> -->
+        <div class="radio-group">
+          <h5>{{ "select_time" | translate }}</h5>
+          <div class="scroll-x">
+            <div *ngFor="let at of availabilityTimes" class="items">
+              <input (change)="onOptionSelect($event, 'time')" name="time" type="radio" [id]="at + 'time'"
+                class="form-check-input me-2" slot="start" [value]="at.time" />
+              <label class="form-check-label cursor-pointer" [for]="at + 'time'">{{ at.timeValue }}</label>
+            </div>
+          </div>
+        </div>
+        <!-- </radio-group> -->
+        <!-- <ion-radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="dateSelected">
+            <h2>{{'select_date' | translate}}</h2>
+            <div class="scroll-x">
+                <ion-item *ngFor="let d of datesToShow" [ngClass]="(dateSelected == d) ? ' active' : ''" (click)="markSelected(d)">
+                    <ion-label>{{this.dates[0].monthText}} {{ d.getDate()}} </ion-label>
+                    <ion-radio slot="start" [value]="d"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group>
+
+        <ion-radio-group class="animate__animated animate__fadeInUp" [(ngModel)]="appointmentRequest.time_from">
+            <h2>{{'select_time' | translate}}</h2>
+            <div class="scroll-x">
+                <ion-item class="animate__animated animate__zoomIn" *ngFor="let at of availabilityTimes">
+                    <ion-label>{{at.timeValue}}</ion-label>
+                    <ion-radio slot="start" [value]="at.time"></ion-radio>
+                </ion-item>
+            </div>
+        </ion-radio-group> -->
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button [disabled]="
+          !this.appointmentRequest.meta?.person ||
+          !dateSelected ||
+          !this.appointmentRequest.time_from
+        " type="button" class="btn btn-primary white" (click)="modal.close('yes')">
+        {{ "book_a_table" | translate }}
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #howToModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">To order a pizza</h4>
+    </div>
+    <div class="modal-body">
+      <ol>
+        <li>Add the quantity</li>
+        <li>Click on Extra Base Option</li>
+        <li>Click on + of the type of base you wish to have</li>
+        <li>Click on the radio button of the type of base you wish to have. This is Thin or Deep base.</li>
+        <li>If you like to add extra topping click on the + of the item to add.</li>
+        <li>Once you are done with your selection click on OK</li>
+      </ol>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('ok')">
+        OK
+      </button>
+    </div>
+  </ng-template>
+</div>

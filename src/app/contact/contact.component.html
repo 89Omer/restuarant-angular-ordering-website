@@ -1,0 +1,66 @@
+<div class="main">
+
+    <div id="page_support">
+        <!-- Body Wrapper Start -->
+        <div class="body_wrapper">
+            <div class="row mx-0">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-5 px-0">
+                    <div class="page_title">
+                        <div class="row align-items-center mx-0">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-0">
+                                <div class="d-flex">
+                                    <h1>Contact Us</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--add a contact us image-->
+                    <div class="banner col-10 col-md-10 col-lg-10 col-xl-7 mx-auto animate__animated animate__zoomIn wow" data-wow-duration=".5s">
+                        <img src="assets/images/support.png" class="img-fluid">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-12 col-md-6 col-lg-7 px-0">
+                    <div class="card p-4 px-3 border-0 rounded-0">
+                        <div class="col-12 col-sm-12 col-md-11 mx-auto px-0">
+                            <h2 class="animate__animated animate__fadeInUp wow">{{'write_us_your_query' | translate}}</h2>
+                            <p class="animate__animated animate__fadeInUp wow">{{'wel_get_back_to_you_soon' | translate}}</p>
+    
+                            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+                                <div class="form-group animate__animated animate__fadeInUp wow">
+                                    <label for="name">{{'name' | translate}}</label>
+                                    <input type="text" id="name" formControlName="name" class="form-control" required>
+                                    <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid">
+                                        <small class="error" *ngIf="contactForm.get('name')?.errors?.['required']">{{'name_is_required' | translate}}</small>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group animate__animated animate__fadeInUp wow">
+                                    <label for="email">{{'email' | translate}}</label>
+                                    <input type="email" id="email" formControlName="email" class="form-control" required>
+                                    <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid">
+                                        <small class="error" *ngIf="contactForm.get('email')?.errors?.['required']">{{'email_is_required' | translate}}</small>
+                                        <small class="error" *ngIf="contactForm.get('email')?.errors?.['email']">{{'invalid_email_address' | translate}}</small>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group animate__animated animate__fadeInUp wow">
+                                    <label for="message">{{'your_message' | translate}}</label>
+                                    <textarea id="message" formControlName="message" class="form-control py-3" rows="5" required></textarea>
+                                    <div *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid">
+                                        <small class="error" *ngIf="contactForm.get('message')?.errors?.['required']">{{'message_is_required' | translate}}</small>
+                                    </div>
+                                </div>
+    
+                                <button type="submit" class="btn rounded-pill py-3 col-12 col-sm-10 col-md-6 col-lg-4 col-xl-4 mt-5 d-block animate__animated animate__fadeInUp wow" data-wow-duration="1s" [disabled]="contactForm.invalid">{{'submit' | translate}}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+  

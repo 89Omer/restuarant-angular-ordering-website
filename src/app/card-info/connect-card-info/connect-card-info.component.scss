@@ -1,0 +1,22 @@
+#demo-payment {
+  width: 100%;
+  height: 96px;
+  display: none;
+}
+
+#demo-payment-loading {
+  width: 100%;
+  height: 96px;
+  display: block;
+}
+
+
+#error {
+  width: 100%;
+  height: 25%;
+}
+
+::ng-deep #iframe-demo-payment {
+  width: 100%;
+  height: 100%;
+}

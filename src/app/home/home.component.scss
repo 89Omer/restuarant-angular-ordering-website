@@ -1,0 +1,102 @@
+$themeDarkColor: #0F172B;
+$f-whiteColor: white;
+$secondaryColor:#ffb30e;
+$greyColor:#eeeeee;
+.greyBg{background-color: $greyColor;}
+h2{font-size: 48px;}
+h4{font-size: 30px;}
+section{padding: 50px 0;}
+.category-item{
+  height: 192.8px !important;
+    width: 192.8px !important;
+}
+
+.pro-pic { height: 160px; width: 160px; overflow: hidden;}
+.homeBanner{
+    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../../assets/images/homeBanner.jpg);
+    color: $f-whiteColor;
+    background-size: 100%;
+    min-height: 560px;
+    height: auto;
+    background-repeat: no-repeat;
+    background-color: $themeDarkColor !important;
+    h2{color: $f-whiteColor;}
+  }
+.homeBanner .slick-slider .slide{margin: 0;}
+.bannerFrame{padding: 35px 60px; background: url(../../assets/images/banner-frame.png) no-repeat center top;}
+.works-icon{ font-size: 50px; color: $secondaryColor;}
+.services{
+  h3{font-size: 40px; margin-bottom: 30px;}
+  h4{color: $themeDarkColor; font-size: 24px;}
+}
+.box{background-color: $f-whiteColor; box-shadow: 0px 0px 18px rgba(0,0,0,0.1); padding: 15px;}
+.hdStyle{
+  span{font-size: 40px; display: block;}
+}
+.themeBg{background-color: $themeDarkColor;}
+.activeColor{color: $secondaryColor;}
+.bookBtn{padding: 10px 20px; display: inline-block; color: $f-whiteColor;}
+.food-img{width: 100% !important; height: auto !important;}
+.hd_sep:after {
+  content: "";
+  display: inline-block;
+  background: url(../../assets/images/sep.png) no-repeat center 0px;
+  width: 58px;
+  height: 42px;
+  margin: 0 0px 0 10px;
+  vertical-align: middle;
+}
+.menuSection {
+  .catChunkImg{border-radius: 35px 0px 35px 0; border: 1px solid #eee; padding: 2px;
+   width:250px; height: 250px; max-width: 250px; margin: 0 auto;
+  }
+  h5{margin-top: 10px;}
+}
+@media only screen and (max-width: 1199px) {
+  .home-header{min-height:460px;}
+}
+
+@media only screen and (max-width: 991px) {
+  nav.bg-light{background-color: white !important;}
+  .testimonial{padding-top: 20px;}
+  .search-restaurant .input-group-icon {
+    .input-box{padding-left: 10px; padding-right: 10px;}
+  }
+  .home-header{min-height: 360px;}
+
+  section{padding:20px 0;}
+  .homeBanner{
+    background-image:none;
+    min-height: auto;
+    background-color: $themeDarkColor !important;
+    h2{color: $f-whiteColor; font-size: 24px;}
+  }
+  .bannerFrame{background-size: 80%; padding: 21px 55px;}
+  .services{
+    h3{font-size:24px; margin-bottom: 10px;}
+    h4{ font-size: 18px;}
+  }
+  .hdStyle{
+    span{font-size: 24px;}
+  }
+  h4{font-size: 16px;}
+  .greyBg{padding-top: 20px  !important;}
+}
+
+@media only screen and (max-width: 767px) {
+  .icon-mb{max-height: 70px;}
+  .img-mb{/*width: 100%; max-width: 180px;*/ height: auto !important; margin: 0 auto; max-height: inherit ;}
+  .testimonial {text-align: center;}
+  .category-item{margin: 0 auto;}
+  .app-icons{max-width: 130px; height: auto;}
+  .home-header{height: auto; margin-top: 96px!important; min-height: 240px;}
+   .food-img{max-width: inherit !important;}
+}
+
+@media only screen and (max-width: 575px) {
+  .pro-pic { height:140px; overflow: hidden;}
+  .home-header{height: auto; min-height: inherit;}
+
+}
+
+

@@ -1,0 +1,13 @@
+<app-header></app-header>
+<router-outlet>
+  <div class="spinner-container">
+    <ngx-spinner size="medium" [color]="'#ffb30e'" type="ball-clip-rotate" [fullScreen]="true">
+      <div class="spinner-text">{{ percentage }}%</div>
+    </ngx-spinner>
+  </div>
+</router-outlet>
+<button *ngIf="windowScrolled" type="button" class="btn btn-floating btn-lg btn-primary" id="btn-back-to-top"
+  (click)="scrollToTop()">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<app-footer [ngClass]="{'d-none':router.url=='/restaurant'}"></app-footer>

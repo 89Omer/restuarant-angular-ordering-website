@@ -1,0 +1,35 @@
+<div class="row address-row">
+  <div class="">
+    <!-- <img class="popup-left-image" src="https://backend.foodzi.co.uk//storage/521/fried-chicken.png" /> -->
+    <!-- <button type="button" class="btn btn-close rounded-circle float-end" aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')">
+    </button> -->
+  </div>
+  <div class="col-sm-12">
+    <div class="d-flex justify-content-center mt-4">
+      <h3 *ngIf="!data || !data.title">
+        Select <span class="text-warning">Branch</span>
+      </h3>
+      <h3 *ngIf="data && data.title">
+        {{data.title}}
+      </h3>
+    </div>
+    <div class="d-flex justify-content-center px-3">
+      <div class="w-100">
+        <div class="form-group w-100">
+          <!-- <label>Enter address</label> -->
+          <select class="form-control rounded-pill" [(ngModel)]="selectedBranch">
+            <option [value]="undefined" disabled selected>Select your branch</option>
+            <option *ngFor="let branch of branches; let i=index" [value]="branch.id">{{branch.name+'  -  '+branch.address}}
+            </option>
+          </select>
+          <!-- <input  type="text" class="form-control rounded-pill" (keydown.enter)="$event.preventDefault()"
+            placeholder="Enter Your Complete Address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+            #searchAddress id="searchAddress"> -->
+          <button class="btn btn-primary rounded-pill saveBtn" (click)="onSaveClick()">Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>
